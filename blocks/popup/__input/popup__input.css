@@ -1,4 +1,4 @@
-.form__input {
+.popup__input {
     margin: 17px 0 0 0;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 1);
@@ -10,6 +10,6 @@
     padding-bottom: 13px;
 }
 
-.form__input:last-child {
+.popup__input:last-child {
     margin-bottom: 0;
 }
