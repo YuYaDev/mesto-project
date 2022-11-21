@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+    <header class="header">
+        <a href="#" class="header__logo-link">
+            <img class="header__logo-pic" src="images/logo-white.svg" alt="Логотип Mesto">
+        </a>
+    </header>
+
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="images/jhak-iv.jpg"  alt="Аватар Жака Кусто">
+
+            <div class="profile__info">
+                <h2 class="profile__name">Жак-Ив Кусто</h2>
+
+                <button class="profile__edit-button"></button>
+
+                <p class="profile__status">Исследователь океана</p>
+            </div>
+
+            <button class="profile__add-button"></button>
+        </section>
+
+        <section class="places">
+            <div class="place__grid-item">
+                <div class="place__grid-rectangle">
+                    <img class="place__grid-img" src="./images/places/karachaevsk.png" alt="Фото Карачаевск">
+
+                    <div class="place__footer">
+                        <p class="place__grid-name">Карачаевск</p>
+                        <button class="place__like-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="place__grid-item">
+                <div class="place__grid-rectangle">
+                    <img class="place__grid-img" src="images/places/elbrus.png" alt="Фото Эльбрус">
+
+                    <div class="place__footer">
+                        <p class="place__grid-name">Эльбрус</p>
+                        <button class="place__like-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="place__grid-item">
+                <div class="place__grid-rectangle">
+                    <img class="place__grid-img" src="images/places/dombai.png" alt="Фото Домбай">
+
+                    <div class="place__footer">
+                        <p class="place__grid-name">Домбай</p>
+                        <button class="place__like-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="place__grid-item">
+                <div class="place__grid-rectangle">
+                    <img class="place__grid-img" src="images/places/elbrus.png" alt="Фото Эльбрус">
+
+                    <div class="place__footer">
+                        <p class="place__grid-name">Эльбрус</p>
+                        <button class="place__like-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="place__grid-item">
+                <div class="place__grid-rectangle">
+                    <img class="place__grid-img" src="images/places/dombai.png" alt="Фото Домбай">
+
+                    <div class="place__footer">
+                        <p class="place__grid-name">Домбай</p>
+                        <button class="place__like-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="place__grid-item">
+                <div class="place__grid-rectangle">
+                    <img class="place__grid-img" src="images/places/karachaevsk.png" alt="Фото Карачаевск">
+
+                    <div class="place__footer">
+                        <p class="place__grid-name">Карачаевск</p>
+                        <button class="place__like-button"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copyright">©2022 Mesto Russia</p>
+    </footer>
+
+    <form class="form">
+
+        <h3 class="form__title">Редактировать профиль</h3>
+
+        <fieldset class="form__fieldset">
+
+            <input class="form__input" type="text" id="profile-name" aria-label="имя" placeholder="Жак-Ив Кусто" name="name" required>
+            <span class='form__input-error' id='profile-name-error'></span>
+
+            <input class="form__input" type="text" id="profile-about" aria-label="о себе" placeholder="Исследователь океана" name="about" required>
+            <span class='form__input-error' id='profile-about-error'></span>
+
+            <button class="form__save-button">Сохранить</button>
+        </fieldset>
+
+        <button type="reset" class="form__close-button" aria-label="закрыть форму"></button>
+    </form>
+</body>
+</html>

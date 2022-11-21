@@ -1,0 +1,10 @@
+h1, h2, h3, div, p {
+    margin: 0;
+}
+
+.page {
+    background-color: black;
+    max-width: 880px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}

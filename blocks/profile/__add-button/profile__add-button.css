@@ -1,0 +1,27 @@
+.profile__add-button {
+    margin-left: auto;
+    border: 1px solid white;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../images/icons/add-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    align-self: center;
+    transition: opacity .3s ease;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: black;
+}
+
+
+.profile__add-button:hover {
+    opacity: 0.6;
+}
+
+
+.profile__add-button:focus {
+    opacity: 0.6;
+}

@@ -1,0 +1,36 @@
+/*@font-face {*/
+/*    font-family: 'Glyphter';*/
+/*    src: url('icon-fonts/Glyphter.eot');*/
+/*    src: url('icon-fonts/Glyphter.eot?#iefix') format('embedded-opentype'),*/
+/*         url('icon-fonts/Glyphter.woff') format('woff'),*/
+/*         url('icon-fonts/Glyphter.ttf') format('truetype'),*/
+/*         url('icon-fonts/Glyphter.svg#Glyphter') format('svg');*/
+/*    font-weight: normal;*/
+/*    font-style: normal;*/
+/*}*/
+/*[class*='icon-']:before{*/
+/*	display: inline-block;*/
+/*   font-family: 'Glyphter';*/
+/*   font-style: normal;*/
+/*   font-weight: normal;*/
+/*   line-height: 1;*/
+/*   -webkit-font-smoothing: antialiased;*/
+/*   -moz-osx-font-smoothing: grayscale;*/
+/*}*/
+
+/*.icon-edit {*/
+/*    color: white;*/
+/*    font-size: 10px;*/
+/*}*/
+/*.icon-add {*/
+/*    color: white;*/
+/*}*/
+/*.icon-like_disabled {*/
+/*    border-color: black;*/
+/*}*/
+
+/*.icon-add:before{content:'\0041';}*/
+/*.icon-close:before{content:'\0043';}*/
+/*.icon-like_disabled:before{content:'\0044';}*/
+/*.icon-edit:before{content:'\0045';}*/
+/*.icon-like_active:before{content:'\0049';}*/
