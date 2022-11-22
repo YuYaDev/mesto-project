@@ -1,2 +1,6 @@
-.place__grid-item {
+@media (max-width: 880px) {
+    .place__grid-item {
+        width: calc(100% - 38px);
+        justify-self: center;
+    }
 }

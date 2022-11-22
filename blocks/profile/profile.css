@@ -7,3 +7,13 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+@media (max-width: 880px) {
+    .profile {
+        padding-left: 19px;
+        padding-right: 19px;
+        flex-direction: column;
+        align-content: center;
+        box-sizing: border-box;
+    }
+}

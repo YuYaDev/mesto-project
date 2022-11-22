@@ -5,3 +5,9 @@
     line-height: 48px;
     margin-bottom: 16px;
 }
+
+@media (max-width: 768px) {
+    .profile__name {
+        font-size: 27px;
+    }
+}

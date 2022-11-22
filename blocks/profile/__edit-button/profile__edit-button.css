@@ -25,3 +25,10 @@
 .profile__edit-button:focus {
     opacity: 0.6;
 }
+
+@media (max-width: 768px) {
+    .profile__edit-button {
+        width: 18px;
+        height: 18px;
+    }
+}
