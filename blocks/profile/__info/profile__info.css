@@ -8,11 +8,12 @@
     justify-content: space-between;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 779px) {
     .profile__info {
         margin-top: 22.25px;
-        flex-direction: column;
         margin-left: 0;
-        align-items: center;
+        justify-content: center;
+        max-width: 282px;
+        min-height: 54px;
     }
 }
