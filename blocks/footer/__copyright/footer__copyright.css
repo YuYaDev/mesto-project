@@ -3,6 +3,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    margin: 0;
 }
 
 @media(max-width: 880px) {
@@ -12,3 +13,4 @@
         margin-left: 19px;
     }
 }
+

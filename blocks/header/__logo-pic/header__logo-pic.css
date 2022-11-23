@@ -1,11 +1,14 @@
 .header__logo-pic {
-    margin: 45px auto 41px;
+    margin-top: 45px;
+    margin-bottom: 41px;
+    width: 142px;
+    height: 33px;
 }
 
 @media (max-width: 880px) {
     .header__logo-pic {
         width: 103.74px;
         height: 24.4px;
-        margin: 28px auto 31px 27px;
+        margin: 28px 0 31px 27px;
     }
 }

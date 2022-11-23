@@ -5,7 +5,7 @@
     background-image: url(../../../images/icons/like-icon_disabled.svg);
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #FFFFFF;
+    background-color: transparent;
     transition: opacity .3s ease;
     border: none;
     cursor: pointer;

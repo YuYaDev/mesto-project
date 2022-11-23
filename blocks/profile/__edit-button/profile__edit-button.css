@@ -8,13 +8,12 @@
     align-items: center;
     align-self: center;
     box-sizing: border-box;
-    border-radius: 2px;
     background-image: url(../../../images/icons/edit-icon.svg);
     background-position: center;
     background-repeat: no-repeat;
     transition: opacity .3s ease;
-    background-color: black;
     cursor: pointer;
+    background-color: transparent;
 }
 
 
@@ -33,5 +32,6 @@
         height: 18px;
         margin-left: 10px;
         margin-bottom: 14px;
+        background-size: 18px 18px;
     }
 }

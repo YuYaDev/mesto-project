@@ -8,8 +8,9 @@
     line-height: 22px;
     text-align: center;
     margin-top: 45px;
-    border-radius: 5px;
     cursor: pointer;
+    border-radius: 2px;
+    border: none;
 }
 
 @media (max-width: 530px) {
