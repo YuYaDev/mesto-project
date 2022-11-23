@@ -3,14 +3,13 @@
     font-weight: 500;
     font-size: 42px;
     line-height: 48px;
-    margin-bottom: 16px;
+    margin: 0 0 16px 0;
 }
 
 @media (max-width: 768px) {
     .profile__name {
         font-size: 27px;
         line-height: 33px;
-        margin-left: 24px;
-        margin-bottom: 14px;
+        margin: 0 0 14px 24px;
     }
 }
