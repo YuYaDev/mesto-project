@@ -8,6 +8,7 @@
     background-color: #FFFFFF;
     transition: opacity .3s ease;
     border: none;
+    cursor: pointer;
 }
 
 

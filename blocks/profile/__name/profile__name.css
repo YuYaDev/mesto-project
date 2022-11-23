@@ -3,7 +3,11 @@
     font-weight: 500;
     font-size: 42px;
     line-height: 48px;
-    margin-bottom: 16px;
+    margin: 0 0 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 336px;
 }
 
 @media (max-width: 768px) {
@@ -12,5 +16,6 @@
         line-height: 33px;
         margin-left: 24px;
         margin-bottom: 14px;
+        max-width: 282px;
     }
 }

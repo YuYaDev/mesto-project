@@ -9,6 +9,7 @@
     text-align: center;
     margin-top: 45px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 @media (max-width: 530px) {
