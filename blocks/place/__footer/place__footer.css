@@ -1,13 +1,7 @@
 .place__footer {
     display: flex;
     justify-content: space-between;
-    padding: 25px 30px 32px 21px;
+    padding: 25px 15px 31px 21px;
     align-items: center;
     max-height: 23px;
-}
-
-@media (max-width: 768px) {
-    .place__footer {
-        padding-right: 15px;
-    }
 }
