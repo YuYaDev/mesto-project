@@ -3,4 +3,11 @@
     margin: 0;
     border: none;
     text-align: center;
+    width: 358px;
+}
+
+@media (max-width: 530px) {
+    .popup__fieldset {
+        width: 238px;
+    }
 }

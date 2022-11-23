@@ -9,3 +9,13 @@
     border: none;
     border-radius: 10px;
 }
+
+@media (max-width: 530px) {
+    .popup__close-button {
+        right: 0;
+        top: -35px;
+        background-size: 20px 20px;
+        height: 20px;
+        width: 20px;
+    }
+}

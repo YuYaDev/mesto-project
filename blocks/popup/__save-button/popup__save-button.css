@@ -10,3 +10,11 @@
     margin-top: 48px;
     border-radius: 5px;
 }
+
+@media (max-width: 530px) {
+    .popup__save-button {
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 42px;
+    }
+}
