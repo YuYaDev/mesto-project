@@ -3,9 +3,10 @@
     grid-template-columns: repeat(auto-fit, 282px);
     grid-template-rows: auto;
     gap: 20px 17px;
+    justify-content: center;
 }
 
-
+/*
 @media (max-width: 880px) {
     .places {
         grid-template-columns: repeat(2, 1fr);
@@ -14,6 +15,6 @@
 
 @media (max-width: 585px) {
     .places {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 282px);
     }
-}
+}*/
