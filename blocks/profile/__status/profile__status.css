@@ -1,4 +1,5 @@
 .profile__status {
+    grid-area: status;
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -7,13 +8,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 336px;
+    max-width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 880px) {
     .profile__status {
         font-size: 14px;
         line-height: 17px;
-        max-width: 282px;
     }
 }
