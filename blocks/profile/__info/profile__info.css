@@ -2,11 +2,11 @@
     color: white;
     margin-left: 30px;
     display: grid;
-    grid-template-columns: 294px 1fr;
+    grid-template-columns: 336px;
     grid-template-rows: repeat(2, auto);
     grid-template-areas:
-        "name edit-btn"
-        "status status";
+        "name"
+        "status";
     gap: 16px 18px;
     max-width: 336px;
     align-items: baseline;
@@ -14,11 +14,11 @@
 
 @media (max-width: 880px) {
     .profile__info {
-        grid-template-columns: 1fr 189px 1fr;
-        grid-template-rows: repeat(3, auto);
+        grid-template-columns: 282px;
+        grid-template-rows: repeat(2, auto);
         grid-template-areas:
-        "space name edit-btn"
-        "status status status";
+        "name"
+        "status";
         margin-top: 26px;
         margin-left: 0;
         max-width: 282px;

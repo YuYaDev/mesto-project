@@ -1,9 +1,12 @@
 .profile__edit-button {
-    grid-area: edit-btn;
+    /*grid-area: name;*/
+    margin-left: 10px;
     width: 24px;
     height: 24px;
     border: 1px solid white;
     display: flex;
+    justify-self: end;
+    align-self: center;
     justify-content: center;
     box-sizing: border-box;
     background-image: url(../../../images/icons/edit-icon.svg);

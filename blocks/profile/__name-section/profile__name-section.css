@@ -1,0 +1,14 @@
+.profile__name-section {
+    grid-area: name;
+    display: flex;
+    align-self: center;
+    align-content: space-around;
+    max-width: 336px;
+}
+
+
+@media (max-width: 880px) {
+    .profile__name-section {
+        max-width: 282px;
+    }
+}
