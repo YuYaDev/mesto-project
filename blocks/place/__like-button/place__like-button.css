@@ -13,7 +13,7 @@
 
 
 .place__like-button:hover {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .place__like-button:focus {
