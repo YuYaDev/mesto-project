@@ -25,5 +25,24 @@ const initialCards = [
     }
 ];
 
-const cardTemplate = document.querySelector('#card-template').content;
-const cardElement = cardTemplate.querySelector('.place').cloneNode(true);
+const page = document.querySelector('.page');
+const content = page.querySelector('.content');
+const places = content.querySelector('.places');
+
+function addCard(placeName, placeLink) {
+    if (typeof placeName != "string" || typeof placeLink != "string" ){
+        console.log("Unexpected type");
+        return;
+    }
+    const cardTemplate = document.querySelector('#card-template').content;
+    const cardElement = cardTemplate.querySelector('.place').cloneNode(true);
+
+    cardElement.querySelector('.place__name').textContent = placeName;
+    cardElement.querySelector('.place__img').setAttribute('src', placeLink);
+
+    places.append(cardElement);
+}
+
+for (let i = 0; i < initialCards.length; i++) {
+    addCard(initialCards[i].name, initialCards[i].link);
+}
