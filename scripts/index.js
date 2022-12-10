@@ -40,6 +40,13 @@ function addCard(placeName, placeLink) {
     cardElement.querySelector('.place__name').textContent = placeName;
     cardElement.querySelector('.place__img').setAttribute('src', placeLink);
 
+    cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
+        evt.target.classList.toggle('place__like-button_active');
+    });
+    cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
+        cardElement.remove();
+    });
+
     places.append(cardElement);
 }
 
