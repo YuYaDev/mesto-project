@@ -49,6 +49,10 @@ function addCard(placeName, placeLink) {
         popup.querySelector('.image-popup__photo').setAttribute('src', placeLink);
     });
 
+    document.querySelector('.image-close').addEventListener('click', function() {
+        document.querySelector('.image-popup').classList.remove('popup_opened');
+    });
+
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('place__like-button_active');
     });
