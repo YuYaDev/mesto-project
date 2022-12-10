@@ -38,7 +38,16 @@ function addCard(placeName, placeLink) {
     const cardElement = cardTemplate.querySelector('.place').cloneNode(true);
 
     cardElement.querySelector('.place__name').textContent = placeName;
-    cardElement.querySelector('.place__img').setAttribute('src', placeLink);
+
+    let place_photo = cardElement.querySelector('.place__img');
+    place_photo.setAttribute('src', placeLink);
+
+    place_photo.addEventListener('click', function() {
+        let popup = document.querySelector('.image-popup');
+        popup.classList.add('popup_opened');
+        popup.querySelector('.image-popup__title').textContent = placeName;
+        popup.querySelector('.image-popup__photo').setAttribute('src', placeLink);
+    });
 
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('place__like-button_active');
@@ -46,6 +55,7 @@ function addCard(placeName, placeLink) {
     cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
         cardElement.remove();
     });
+
 
     places.append(cardElement);
 }

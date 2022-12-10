@@ -1,0 +1,5 @@
+.image-popup__photo {
+    max-height: 75vh;
+    max-width: 75vw;
+    cursor: pointer;
+}
