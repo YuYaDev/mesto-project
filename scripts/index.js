@@ -34,6 +34,7 @@ const places = content.querySelector('.places');
 const editButton = content.querySelector('.profile__edit-button');
 const addButton = content.querySelector('.profile__add-button');
 
+const imageForm = document.querySelector('.image-popup')
 const placeForm = document.querySelector('.add-place-popup');
 const profileForm = document.querySelector('.edit-profile-popup');
 
@@ -58,10 +59,6 @@ function addCard(placeName, placeLink) {
         popup.classList.add('popup_opened');
         popup.querySelector('.image-popup__title').textContent = placeName;
         popup.querySelector('.image-popup__photo').setAttribute('src', placeLink);
-    });
-
-    document.querySelector('.image-close').addEventListener('click', function() {
-        document.querySelector('.image-popup').classList.remove('popup_opened');
     });
 
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
@@ -115,4 +112,16 @@ profileForm.addEventListener('submit', function(event) {
 
     nameInput.textContent = `${name.value}`;
     jobInput.textContent = `${about.value}`;
+});
+
+document.querySelector('.edit-profile-popup__close-button').addEventListener('click', function() {
+    profileForm.classList.remove('popup_opened');
+});
+
+document.querySelector('.add-place-popup__close-button').addEventListener('click', function() {
+    placeForm.classList.remove('popup_opened');
+});
+
+document.querySelector('.image-popup__close-button').addEventListener('click', function() {
+    imageForm.classList.remove('popup_opened');
 });
