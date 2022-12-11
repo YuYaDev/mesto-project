@@ -44,11 +44,26 @@
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__fieldset" name="EditForm">
 
-                    <input class="popup__input" type="text" id="profile-name" aria-label="имя" placeholder="Жак-Ив Кусто" name="name" required>
+                    <input class="popup__input popup__input_type_name" type="text" id="profile-name" aria-label="имя" placeholder="Жак-Ив Кусто" name="name" required>
 
-                    <input class="popup__input" type="text" id="profile-about" aria-label="о себе" placeholder="Исследователь океана" name="about" required>
+                    <input class="popup__input popup__input_type_about" type="text" id="profile-about" aria-label="о себе" placeholder="Исследователь океана" name="about" required>
 
                     <button class="popup__save-button" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup add-place-popup">
+            <div class="popup__container">
+                <button class="popup__close-button add-place-popup__close-button" aria-label="закрыть форму" type="button"></button>
+                <h3 class="popup__title">Новое место</h3>
+                <form class="popup__fieldset" name="EditForm">
+
+                    <input class="popup__input popup__input_type_title" type="text" id="place-name" aria-label="название" placeholder="Название" name="title" required>
+
+                    <input class="popup__input popup__input_type_link" type="text" id="place-link" aria-label="ссылка на картинку" placeholder="Ссылка на картинку" name="link" required>
+
+                    <button class="popup__save-button add-place-popup__save-button" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
