@@ -47,15 +47,17 @@ function addCard(placeName, placeLink) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.place').cloneNode(true);
 
-    cardElement.querySelector('.place__name').textContent = placeName;
-    cardElement.querySelector('.place__img').setAttribute('alt', placeName);
-    cardElement.querySelector('.place__img').setAttribute('src', placeLink);
+    const popup = document.querySelector('.image-popup');
 
-    let place_photo = cardElement.querySelector('.place__img');
-    place_photo.setAttribute('src', placeLink);
+    const placePhoto = cardElement.querySelector('.place__img');
+    const placeTitle = cardElement.querySelector('.place__name');
 
-    place_photo.addEventListener('click', function() {
-        let popup = document.querySelector('.image-popup');
+
+    placeTitle.textContent = placeName;
+    placePhoto.setAttribute('alt', placeName);
+    placePhoto.setAttribute('src', placeLink);
+
+    placePhoto.addEventListener('click', function() {
         popup.classList.add('popup_opened');
         popup.querySelector('.image-popup__title').textContent = placeName;
         popup.querySelector('.image-popup__photo').setAttribute('src', placeLink);
@@ -67,7 +69,6 @@ function addCard(placeName, placeLink) {
     cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
         cardElement.remove();
     });
-
 
     places.prepend(cardElement);
 }
