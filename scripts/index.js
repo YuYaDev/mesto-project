@@ -30,9 +30,12 @@ const initialCards = [
 const page = document.querySelector('.page');
 const content = page.querySelector('.content');
 const places = content.querySelector('.places');
+
+const editButton = content.querySelector('.profile__edit-button');
 const addButton = content.querySelector('.profile__add-button');
 
 const placeForm = document.querySelector('.add-place-popup');
+const profileForm = document.querySelector('.edit-profile-popup');
 
 
 function addCard(placeName, placeLink) {
@@ -77,14 +80,14 @@ for (let i = initialCards.length - 1; i >= 0; i--) {
 }
 
 addButton.addEventListener('click', function () {
-    document.querySelector('.add-place-popup').classList.add('popup_opened');
+    placeForm.classList.add('popup_opened');
 });
 
 
 placeForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    document.querySelector('.add-place-popup').classList.remove('popup_opened');
+    placeForm.classList.remove('popup_opened');
 
     const title = document.querySelector('.popup__input_type_title');
     const link = document.querySelector('.popup__input_type_link');
@@ -93,4 +96,23 @@ placeForm.addEventListener('submit', function(event) {
 
     title.value = '';
     link.value = '';
+});
+
+editButton.addEventListener('click', function () {
+    profileForm.classList.add('popup_opened');
+});
+
+profileForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    profileForm.classList.remove('popup_opened');
+
+    const name = document.querySelector('.popup__input_type_name');
+    const about = document.querySelector('.popup__input_type_about');
+
+    const nameInput = document.querySelector('.profile__name');
+    const jobInput = document.querySelector('.profile__status');
+
+    nameInput.textContent = `${name.value}`;
+    jobInput.textContent = `${about.value}`;
 });
