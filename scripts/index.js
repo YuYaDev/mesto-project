@@ -1,5 +1,3 @@
-'use strict';
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -34,7 +32,7 @@ const places = content.querySelector('.places');
 const editButton = content.querySelector('.profile__edit-button');
 const addButton = content.querySelector('.profile__add-button');
 
-const imageForm = document.querySelector('.image-popup')
+const imageForm = document.querySelector('.image-popup');
 const placeForm = document.querySelector('.add-place-popup');
 const profileForm = document.querySelector('.edit-profile-popup');
 
@@ -73,12 +71,20 @@ function addCard(placeName, placeLink) {
     places.prepend(cardElement);
 }
 
-for (let i = initialCards.length - 1; i >= 0; i--) {
-    addCard(initialCards[i].name, initialCards[i].link);
+function addInitialCards() {
+    for (let i = initialCards.length - 1; i >= 0; i--) {
+        addCard(initialCards[i].name, initialCards[i].link);
+    }
 }
+addInitialCards()
+
 
 addButton.addEventListener('click', function () {
     placeForm.classList.add('popup_opened');
+});
+
+editButton.addEventListener('click', function () {
+    profileForm.classList.add('popup_opened');
 });
 
 
@@ -96,9 +102,6 @@ placeForm.addEventListener('submit', function(event) {
     link.value = '';
 });
 
-editButton.addEventListener('click', function () {
-    profileForm.classList.add('popup_opened');
-});
 
 profileForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -111,8 +114,8 @@ profileForm.addEventListener('submit', function(event) {
     const nameInput = document.querySelector('.profile__name');
     const jobInput = document.querySelector('.profile__status');
 
-    nameInput.textContent = `${name.value}`;
-    jobInput.textContent = `${about.value}`;
+    nameInput.textContent = name.value;
+    jobInput.textContent = about.value;
 });
 
 document.querySelector('.edit-profile-popup__close-button').addEventListener('click', function() {
