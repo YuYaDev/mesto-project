@@ -11,3 +11,5 @@
 * HTML5
 * CSS
 * javascript
+
+Ссылка на проект: https://yuyadev.github.io/mesto-project/
