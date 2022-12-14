@@ -95,7 +95,6 @@ function addCard(card, container) {
 
 function addInitialCards() {
     for (let i = initialCards.length - 1; i >= 0; i--) {
-        createCard(initialCards[i].name, initialCards[i].link);
         addCard(createCard(initialCards[i].name, initialCards[i].link), places)
     }
 }
