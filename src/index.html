@@ -4,18 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Проект «Место»</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
 
         <header class="header">
-            <img class="header__logo-pic" src="images/logo-white.svg" alt="Логотип Mesto">
+            <img class="header__logo-pic" src="<%=require('./images/logo-white.svg')%>" alt="Логотип Mesto">
         </header>
 
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src="images/jhak-iv.jpg"  alt="Аватар Жака Кусто">
+                <img class="profile__avatar" src="<%=require('./images/jhak-iv.jpg')%>" alt="Аватар Жака Кусто">
 
                 <div class="profile__info">
                     <div class="profile__name-section">
@@ -86,7 +85,5 @@
                 </div>
             </article>
         </template>
-    <script type="module" src="scripts/constants.js"></script>
-    <script type="module" src="scripts/index.js"></script>
 </body>
 </html>
