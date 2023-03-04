@@ -1,5 +1,7 @@
 import './styles/index.css';
 
+import {enableValidation} from './components/validate.js';
+
 const places = document.querySelector('.places');
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -44,7 +46,6 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -142,4 +143,15 @@ document.querySelector('.add-place-popup__close-button').addEventListener('click
 
 document.querySelector('.image-popup__close-button').addEventListener('click', function() {
     closePopup(imageForm);
+});
+
+
+enableValidation({
+    formSelector: '.popup__form',
+    fieldsetSelector: '.popup__fieldset',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
 });
