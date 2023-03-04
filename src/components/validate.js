@@ -1,4 +1,3 @@
-
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
         console.log('Я работаю hasInvalidInput');
