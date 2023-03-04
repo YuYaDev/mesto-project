@@ -3,7 +3,7 @@ import './styles/index.css';
 import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
     title, openPopup, closePopup} from './components/utlis';
 import {enableValidation} from './components/validate.js';
-import {addCard, addInitialCards, createCard} from './components/card';
+import {addCard, addInitialCards, createCard} from './components/card.js';
 
 
 addInitialCards()

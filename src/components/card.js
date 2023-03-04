@@ -1,12 +1,10 @@
-import {places, imageForm, openPopup} from "./utlis";
-
+import {places, imageForm, openPopup} from "./utils";
 
 function createCard(placeName, placeLink) {
     if (typeof placeName != "string" || typeof placeLink != "string" ){
         console.log("Unexpected type");
         return;
     }
-
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.place').cloneNode(true);
 
@@ -66,10 +64,10 @@ function addInitialCards() {
             link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
         }
     ];
-
     for (let i = initialCards.length - 1; i >= 0; i--) {
         createCard(initialCards[i].name, initialCards[i].link);
         addCard(createCard(initialCards[i].name, initialCards[i].link), places)
     }
 }
+
 export {addCard, addInitialCards, createCard};
