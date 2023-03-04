@@ -1,6 +1,6 @@
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
-        console.log('Я работаю hasInvalidInput');
+
         return !inputElement.validity.valid;
     });
 };
@@ -11,7 +11,6 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
     inputElement.classList.add(settings.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(settings.errorClass);
-    console.log('Я работаю showInputError');
 };
 
 const hideInputError = (formElement, inputElement, settings) => {
@@ -19,7 +18,6 @@ const hideInputError = (formElement, inputElement, settings) => {
     inputElement.classList.remove(settings.inputErrorClass);
     errorElement.classList.remove(settings.errorClass);
     errorElement.textContent = '';
-    console.log('Я работаю hideInputError');
 };
 
 const toggleButtonState = (inputList, submitButton, settings) => {
@@ -30,7 +28,6 @@ const toggleButtonState = (inputList, submitButton, settings) => {
         submitButton.disabled = false;
         submitButton.classList.remove(settings.inactiveButtonClass);
     }
-    console.log('Я работаю toggleButtonState');
 }
 
 
@@ -45,7 +42,6 @@ const checkInputValidity = (formElement, inputElement, settings) => {
     } else {
         hideInputError(formElement, inputElement, settings);
     }
-    console.log('Я работаю checkInputValidity');
 };
 
 const setEventListeners = (fieldSet, formElement, settings) => {
@@ -60,7 +56,6 @@ const setEventListeners = (fieldSet, formElement, settings) => {
             toggleButtonState(inputList, submitButton, settings);
         });
     });
-    console.log('Я работаю setEventListeners');
 };
 
 
@@ -77,5 +72,4 @@ export const enableValidation = (settings) => {
             setEventListeners(fieldSet, formElement, settings);
         });
     });
-    console.log('Я работаю enableValidation');
 };

@@ -1,4 +1,4 @@
-import {places, imageForm, openPopup} from "./utils";
+import {places, imageForm, openPopup} from "./utlis";
 
 function createCard(placeName, placeLink) {
     if (typeof placeName != "string" || typeof placeLink != "string" ){
