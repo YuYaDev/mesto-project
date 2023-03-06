@@ -12,6 +12,7 @@ const link = document.querySelector('.popup__input_type_link');
 
 const nameInput = document.querySelector('.profile__name');
 const jobInput = document.querySelector('.profile__status');
+const avatar = document.querySelector('.profile__avatar');
 
 const places = document.querySelector('.places');
 
@@ -24,4 +25,4 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-export {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm, title, closePopup, openPopup}
+export {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm, title, closePopup, openPopup}

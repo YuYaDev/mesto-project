@@ -1,12 +1,30 @@
-import './styles/index.css';
+import '../styles/index.css';
 
-import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, openPopup, closePopup} from './components/utlis';
-import {enableValidation} from './components/validate.js';
-import {addCard, addInitialCards, createCard} from './components/card.js';
+import {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
+    title, openPopup, closePopup} from './utlis';
+import {enableValidation} from './validate.js';
+import {addCard, createCard} from './card.js';
+import {getInitialCards, getUserInfo} from "./api";
 
 
-addInitialCards()
+getUserInfo()
+    .then(res => res.json())
+    .then((user_info) => {
+        nameInput.textContent = user_info.name;
+        jobInput.textContent = user_info.about;
+        avatar.setAttribute("src", user_info.avatar);
+    })
+    .catch(() => console.log('Fail'))
+
+//addInitialCards()
+getInitialCards()
+    .then(res => res.json())
+    .then((cardsArray) => {
+        cardsArray.forEach((card) => {
+            addCard(createCard(card.name, card.link), places)
+        })
+    })
+    .catch(() => console.log('Fail'))
 
 buttonAdd.addEventListener('click', function () {
     openPopup(placeForm);

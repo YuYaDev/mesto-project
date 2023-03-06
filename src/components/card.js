@@ -1,4 +1,4 @@
-import {places, imageForm, openPopup} from "./utlis";
+import {imageForm, openPopup} from "./utlis";
 
 function createCard(placeName, placeLink) {
     if (typeof placeName != "string" || typeof placeLink != "string" ){
@@ -37,37 +37,4 @@ function addCard(card, container) {
     container.prepend(card);
 }
 
-function addInitialCards() {
-    const initialCards = [
-        {
-            name: 'Архыз',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-        },
-        {
-            name: 'Челябинская область',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-        },
-        {
-            name: 'Иваново',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-        },
-        {
-            name: 'Камчатка',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-        },
-        {
-            name: 'Холмогорский район',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-        },
-        {
-            name: 'Байкал',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-        }
-    ];
-    for (let i = initialCards.length - 1; i >= 0; i--) {
-        createCard(initialCards[i].name, initialCards[i].link);
-        addCard(createCard(initialCards[i].name, initialCards[i].link), places)
-    }
-}
-
-export {addCard, addInitialCards, createCard};
+export {addCard, createCard};
