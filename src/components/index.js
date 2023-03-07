@@ -28,7 +28,7 @@ getInitialCards()
     )
     .then((cardsArray) => {
         cardsArray.forEach((card) => {
-            addCard(createCard(card.name, card.link), places)
+            addCard(createCard(card.name, card.link, card.likes.length), places)
         })
     })
     .catch(() => console.log('Fail getInitialCards'))
@@ -57,7 +57,7 @@ placeForm.addEventListener('submit', function(event) {
             }}
         )
         .then((data) => {
-            addCard(createCard(data.name, data.link), places)
+            addCard(createCard(data.name, data.link, data.likes.length), places)
         })
 
     title.value = '';

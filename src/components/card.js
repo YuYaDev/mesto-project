@@ -1,6 +1,6 @@
 import {imageForm, openPopup} from "./utlis";
 
-function createCard(placeName, placeLink) {
+function createCard(placeName, placeLink, placeLikeCount) {
     if (typeof placeName != "string" || typeof placeLink != "string" ){
         console.log("Unexpected type");
         return;
@@ -10,8 +10,9 @@ function createCard(placeName, placeLink) {
 
     const placePhoto = cardElement.querySelector('.place__img');
     const placeTitle = cardElement.querySelector('.place__name');
+    const placeLikes = cardElement.querySelector('.place__like-counter');
 
-
+    placeLikes.textContent = placeLikeCount;
     placeTitle.textContent = placeName;
     placePhoto.setAttribute('alt', placeName);
     placePhoto.setAttribute('src', placeLink);
