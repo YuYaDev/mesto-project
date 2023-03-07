@@ -21,3 +21,17 @@ export const getUserInfo = () => {
         }
     });
 }
+
+export const updateUserInfo = (newUserName, newUserDescription) => {
+    return fetch(config.baseUrl+'/users/me', {
+        method: 'PATCH',
+        headers: {
+            authorization: config.headers.authorization,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: newUserName,
+            about: newUserDescription
+        })
+    });
+}

@@ -4,27 +4,35 @@ import {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imag
     title, openPopup, closePopup} from './utlis';
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
-import {getInitialCards, getUserInfo} from "./api";
+import {getInitialCards, getUserInfo, updateUserInfo} from "./api";
 
 
 getUserInfo()
-    .then(res => res.json())
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        }}
+    )
     .then((user_info) => {
         nameInput.textContent = user_info.name;
         jobInput.textContent = user_info.about;
         avatar.setAttribute("src", user_info.avatar);
     })
-    .catch(() => console.log('Fail'))
+    .catch(() => console.log('Fail getUserInfo'))
 
-//addInitialCards()
 getInitialCards()
-    .then(res => res.json())
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        }}
+    )
     .then((cardsArray) => {
         cardsArray.forEach((card) => {
             addCard(createCard(card.name, card.link), places)
         })
     })
-    .catch(() => console.log('Fail'))
+    .catch(() => console.log('Fail getInitialCards'))
+
 
 buttonAdd.addEventListener('click', function () {
     openPopup(placeForm);
@@ -32,7 +40,6 @@ buttonAdd.addEventListener('click', function () {
 
 buttonEdit.addEventListener('click', function () {
     openPopup(profileForm);
-
     name.value = nameInput.textContent;
     about.value = jobInput.textContent;
 });
@@ -42,7 +49,6 @@ placeForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
     closePopup(placeForm);
-
     addCard(createCard(title.value, link.value), places);
 
     title.value = '';
@@ -52,11 +58,18 @@ placeForm.addEventListener('submit', function(event) {
 
 profileForm.addEventListener('submit', function(event) {
     event.preventDefault();
-
     closePopup(profileForm);
 
-    nameInput.textContent = name.value;
-    jobInput.textContent = about.value;
+    updateUserInfo(name.value, about.value)
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }})
+        .then((data) => {
+            nameInput.textContent = data.name;
+            jobInput.textContent = data.about;
+        })
+        .catch(() => console.log('Fail updateUserInfo'))
 });
 
 
