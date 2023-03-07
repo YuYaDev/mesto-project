@@ -6,6 +6,7 @@ import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
 import {addNewCard, getInitialCards, getUserInfo, updateUserInfo} from "./api";
 
+let ownerId = '';
 
 getUserInfo()
     .then(res => {
@@ -17,6 +18,7 @@ getUserInfo()
         nameInput.textContent = user_info.name;
         jobInput.textContent = user_info.about;
         avatar.setAttribute("src", user_info.avatar);
+        ownerId = user_info._id;
     })
     .catch(() => console.log('Fail getUserInfo'))
 
@@ -28,7 +30,8 @@ getInitialCards()
     )
     .then((cardsArray) => {
         cardsArray.forEach((card) => {
-            addCard(createCard(card.name, card.link, card.likes.length), places)
+            let isMyCard = ownerId === card.owner._id;
+            addCard(createCard(card.name, card.link, card.likes.length, card._id, isMyCard), places)
         })
     })
     .catch(() => console.log('Fail getInitialCards'))
@@ -56,8 +59,8 @@ placeForm.addEventListener('submit', function(event) {
                 return res.json();
             }}
         )
-        .then((data) => {
-            addCard(createCard(data.name, data.link, data.likes.length), places)
+        .then((card) => {
+            addCard(createCard(card.name, card.link, card.likes.length, card._id, true), places)
         })
 
     title.value = '';

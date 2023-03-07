@@ -1,6 +1,7 @@
 import {imageForm, openPopup} from "./utlis";
+import {deleteCard} from "./api";
 
-function createCard(placeName, placeLink, placeLikeCount) {
+function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDeleteButton) {
     if (typeof placeName != "string" || typeof placeLink != "string" ){
         console.log("Unexpected type");
         return;
@@ -27,9 +28,20 @@ function createCard(placeName, placeLink, placeLikeCount) {
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('place__like-button_active');
     });
-    cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
-        cardElement.remove();
-    });
+
+    if(hasDeleteButton){
+        cardElement.innerHTML += '<button class="place__delete-button" type="button"></button>';
+        cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
+            cardElement.remove();
+            deleteCard(placeCardId)
+                .then(res => {
+                    if (res.ok) {
+                        console.log(`Card ${placeCardId} has successfully deleted!`);
+                    }}
+                )
+                .catch(() => console.log('Fail deleteCard'))
+            });
+    }
 
     return cardElement
 }

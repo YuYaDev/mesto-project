@@ -49,3 +49,12 @@ export const addNewCard = (cardName, cardLink) => {
         })
     });
 }
+
+export const deleteCard = (cardId) => {
+    return fetch(config.baseUrl+'/cards/'+cardId, {
+        method: 'DELETE',
+        headers: {
+            authorization: config.headers.authorization,
+        }
+    });
+}
