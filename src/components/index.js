@@ -4,7 +4,7 @@ import {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imag
     title, openPopup, closePopup} from './utlis';
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
-import {getInitialCards, getUserInfo, updateUserInfo} from "./api";
+import {addNewCard, getInitialCards, getUserInfo, updateUserInfo} from "./api";
 
 
 getUserInfo()
@@ -47,9 +47,18 @@ buttonEdit.addEventListener('click', function () {
 
 placeForm.addEventListener('submit', function(event) {
     event.preventDefault();
-
     closePopup(placeForm);
-    addCard(createCard(title.value, link.value), places);
+    //const test_name = 'Fennec fox';
+    //const test_url = 'https://images.unsplash.com/photo-1635922511024-5ea80c617b78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80';
+    addNewCard(title.value, link.value)
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }}
+        )
+        .then((data) => {
+            addCard(createCard(data.name, data.link), places)
+        })
 
     title.value = '';
     link.value = '';

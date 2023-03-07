@@ -6,14 +6,6 @@ const config = {
     }
 }
 
-export const getInitialCards = () => {
-    return fetch(config.baseUrl+'/cards', {
-        headers: {
-            authorization: config.headers.authorization
-        }
-    });
-}
-
 export const getUserInfo = () => {
     return fetch(config.baseUrl+'/users/me', {
         headers: {
@@ -32,6 +24,28 @@ export const updateUserInfo = (newUserName, newUserDescription) => {
         body: JSON.stringify({
             name: newUserName,
             about: newUserDescription
+        })
+    });
+}
+
+export const getInitialCards = () => {
+    return fetch(config.baseUrl+'/cards', {
+        headers: {
+            authorization: config.headers.authorization
+        }
+    });
+}
+
+export const addNewCard = (cardName, cardLink) => {
+    return fetch(config.baseUrl+'/cards', {
+        method: 'POST',
+        headers: {
+            authorization: config.headers.authorization,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: cardName,
+            link: cardLink
         })
     });
 }
