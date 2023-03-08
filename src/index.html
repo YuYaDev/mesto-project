@@ -4,18 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Проект «Место»</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
 
         <header class="header">
-            <img class="header__logo-pic" src="images/logo-white.svg" alt="Логотип Mesto">
+            <img class="header__logo-pic" src="<%=require('./images/logo-white.svg')%>" alt="Логотип Mesto">
         </header>
 
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src="images/jhak-iv.jpg"  alt="Аватар Жака Кусто">
+                <img class="profile__avatar" src="<%=require('./images/jhak-iv.jpg')%>" alt="Аватар Жака Кусто">
 
                 <div class="profile__info">
                     <div class="profile__name-section">
@@ -42,11 +41,18 @@
             <div class="popup__container">
                 <button class="popup__close-button edit-profile-popup__close-button" aria-label="закрыть форму" type="button"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__fieldset" name="EditForm">
+                <form class="popup__form" name="EditForm" novalidate>
 
-                    <input class="popup__input popup__input_type_name" type="text" id="profile-name" aria-label="имя" placeholder="Жак-Ив Кусто" name="name" required>
+                    <fieldset class="popup__fieldset">
+                        <input class="popup__input popup__input_type_name" type="text" id="profile-name" aria-label="имя"
+                                   placeholder="Жак-Ив Кусто" name="name" minlength="2" maxlength="40" required>
+                        <span class="popup__input-error profile-name-error">Вы пропустили это поле.</span>
 
-                    <input class="popup__input popup__input_type_about" type="text" id="profile-about" aria-label="о себе" placeholder="Исследователь океана" name="about" required>
+                        <input class="popup__input popup__input_type_about" type="text" id="profile-about" aria-label="о себе"
+                                   placeholder="Исследователь океана" name="about" minlength="2" maxlength="200" required>
+
+                        <span class="popup__input-error profile-about-error">Вы пропустили это поле.</span>
+                    </fieldset>
 
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
@@ -57,11 +63,20 @@
             <div class="popup__container">
                 <button class="popup__close-button add-place-popup__close-button" aria-label="закрыть форму" type="button"></button>
                 <h3 class="popup__title">Новое место</h3>
-                <form class="popup__fieldset" name="PlaceForm">
+                <form class="popup__form" name="PlaceForm" novalidate>
 
-                    <input class="popup__input popup__input_type_title" type="text" id="place-name" aria-label="название" placeholder="Название" name="title" required>
+                    <fieldset class="popup__fieldset">
+                        <input class="popup__input popup__input_type_title" type="text" id="place-name" aria-label="название"
+                                   placeholder="Название" name="title" minlength="2" maxlength="30" required>
 
-                    <input class="popup__input popup__input_type_link" type="text" id="place-link" aria-label="ссылка на картинку" placeholder="Ссылка на картинку" name="link" required>
+                        <span class="popup__input-error place-name-error">Вы пропустили это поле.</span>
+
+                        <input class="popup__input popup__input_type_link" type="url" id="place-link" aria-label="ссылка на картинку"
+                                   placeholder="Ссылка на картинку" name="link" required>
+
+
+                        <span class="popup__input-error place-link-error">Введите адрес сайта.</span>
+                    </fieldset>
 
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
@@ -86,7 +101,5 @@
                 </div>
             </article>
         </template>
-    <script type="module" src="scripts/constants.js"></script>
-    <script type="module" src="scripts/index.js"></script>
 </body>
 </html>

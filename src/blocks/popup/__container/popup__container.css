@@ -9,6 +9,8 @@
     border-radius: 10px;
     box-sizing: border-box;
     position: relative;
+    width: -moz-available;
+    width: -webkit-fill-available;
 }
 
 @media (max-width: 530px) {
