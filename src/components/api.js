@@ -76,3 +76,16 @@ export const deleteLikeCard = (cardId) => {
         }
     });
 }
+
+export const updateUserAvatar = (avatarUrl) => {
+    return fetch(config.baseUrl+'/users/me/avatar', {
+        method: 'PATCH',
+        headers: {
+            authorization: config.headers.authorization,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            avatar: avatarUrl
+        })
+    });
+}

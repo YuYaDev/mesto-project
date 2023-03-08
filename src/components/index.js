@@ -4,9 +4,10 @@ import {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imag
     deleteForm, title, openPopup, closePopup} from './utlis';
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
-import {addNewCard, getInitialCards, getUserInfo, updateUserInfo} from "./api";
+import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
 
 let ownerId = '';
+
 
 getUserInfo()
     .then(res => {
@@ -99,6 +100,16 @@ document.querySelector('.delete-popup__close-button').addEventListener('click', 
     closePopup(deleteForm);
 });
 
+avatar.addEventListener('mouseover', function () {
+    toggleEditAvatarButton();
+});
+avatar.addEventListener('mouseout', function () {
+    toggleEditAvatarButton();
+});
+
+function toggleEditAvatarButton(){
+    avatar.classList.toggle('profile_avatar-edit-button_active');
+}
 
 enableValidation({
     formSelector: '.popup__form',
