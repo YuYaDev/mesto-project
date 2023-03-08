@@ -1,9 +1,9 @@
-import './styles/index.css';
+import '../styles/index.css';
 
 import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, openPopup, closePopup} from './components/utlis';
-import {enableValidation} from './components/validate.js';
-import {addCard, addInitialCards, createCard} from './components/card.js';
+    title, openPopup, closePopup} from './utlis';
+import {enableValidation} from './validate.js';
+import {addCard, addInitialCards, createCard} from './card.js';
 
 
 addInitialCards()
