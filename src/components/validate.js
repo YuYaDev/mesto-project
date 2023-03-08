@@ -1,7 +1,6 @@
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
-
-        return !inputElement.validity.valid;
+        return !(inputElement.validity.valid || /[^a-zа-яё\s-]+/ig.test(inputElement.value));
     });
 };
 
@@ -32,14 +31,18 @@ const toggleButtonState = (inputList, submitButton, settings) => {
 
 
 const checkInputValidity = (formElement, inputElement, settings) => {
-    if (inputElement.id === 'place-link') {
-        inputElement.data = "Введите адрес сайта."
-    } else {
-        inputElement.data = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы."
-    }
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.data, settings);
-    } else {
+        if (inputElement.id === 'place-link') {
+            inputElement.dataError = "Введите адрес сайта.";
+        } else {
+            inputElement.dataError = "Вы пропустили это поле.";
+        }
+        showInputError(formElement, inputElement, inputElement.dataError, settings);
+    } else if (/[^a-zа-яё\s-]+/ig.test(inputElement.value)) {
+        inputElement.dataError = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.";
+
+        showInputError(formElement, inputElement, inputElement.dataError, settings);
+    }else {
         hideInputError(formElement, inputElement, settings);
     }
 };
