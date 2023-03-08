@@ -58,3 +58,21 @@ export const deleteCard = (cardId) => {
         }
     });
 }
+
+export const addLikeCard = (cardId) => {
+    return fetch(config.baseUrl+'/cards/likes/'+cardId, {
+        method: 'PUT',
+        headers: {
+            authorization: config.headers.authorization,
+        }
+    });
+}
+
+export const deleteLikeCard = (cardId) => {
+    return fetch(config.baseUrl+'/cards/likes/'+cardId, {
+        method: 'DELETE',
+        headers: {
+            authorization: config.headers.authorization,
+        }
+    });
+}

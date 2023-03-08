@@ -1,5 +1,5 @@
 import {imageForm, deleteForm, openPopup, closePopup, deleteFormButton} from "./utlis";
-import {deleteCard} from "./api";
+import {addLikeCard, deleteCard, deleteLikeCard} from "./api";
 
 function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDeleteButton) {
     if (typeof placeName != "string" || typeof placeLink != "string" ){
@@ -26,6 +26,27 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
     });
 
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
+        if (evt.target.classList.contains('place__like-button_active')) {
+            deleteLikeCard(placeCardId)
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }})
+                .then((data) => {
+                    placeLikes.textContent = data.likes.length;
+                })
+                .catch(() => console.log('Fail deleteLike'))
+        }else {
+            addLikeCard(placeCardId)
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }})
+                .then((data) => {
+                    placeLikes.textContent = data.likes.length;
+                })
+                .catch(() => console.log('Fail addLike'))
+        }
         evt.target.classList.toggle('place__like-button_active');
     });
 
