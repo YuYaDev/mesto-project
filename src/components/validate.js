@@ -35,7 +35,7 @@ const checkInputValidity = (formElement, inputElement, settings) => {
     if (inputElement.id === 'place-link') {
         inputElement.data = "Введите адрес сайта."
     } else {
-        inputElement.data = "Вы пропустили это поле."
+        inputElement.data = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы."
     }
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.data, settings);

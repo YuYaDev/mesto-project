@@ -64,3 +64,19 @@ enableValidation({
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 });
+
+[placeForm, profileForm, imageForm].forEach((popup => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.querySelector('.popup__container') || evt.target.querySelector('.image-popup__container')) {
+            closePopup(popup)
+        }
+    })
+}))
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        [placeForm, profileForm, imageForm].forEach((popup => {
+            closePopup(popup)
+        }))
+    }
+})
