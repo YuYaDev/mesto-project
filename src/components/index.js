@@ -1,7 +1,7 @@
 import '../styles/index.css';
 
 import {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, openPopup, closePopup} from './utlis';
+    deleteForm, title, openPopup, closePopup} from './utlis';
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
 import {addNewCard, getInitialCards, getUserInfo, updateUserInfo} from "./api";
@@ -95,6 +95,10 @@ document.querySelector('.add-place-popup__close-button').addEventListener('click
 
 document.querySelector('.image-popup__close-button').addEventListener('click', function() {
     closePopup(imageForm);
+});
+
+document.querySelector('.delete-popup__close-button').addEventListener('click', function() {
+    closePopup(deleteForm);
 });
 
 

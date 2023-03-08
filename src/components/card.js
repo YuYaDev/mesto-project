@@ -1,4 +1,4 @@
-import {imageForm, openPopup} from "./utlis";
+import {imageForm, deleteForm, openPopup, closePopup, deleteFormButton} from "./utlis";
 import {deleteCard} from "./api";
 
 function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDeleteButton) {
@@ -29,18 +29,29 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
         evt.target.classList.toggle('place__like-button_active');
     });
 
+    let cardForDeletion = undefined;
     if(hasDeleteButton){
         cardElement.innerHTML += '<button class="place__delete-button" type="button"></button>';
         cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
-            cardElement.remove();
-            deleteCard(placeCardId)
-                .then(res => {
-                    if (res.ok) {
-                        console.log(`Card ${placeCardId} has successfully deleted!`);
-                    }}
-                )
-                .catch(() => console.log('Fail deleteCard'))
-            });
+            openPopup(deleteForm);
+            cardForDeletion = cardElement;
+          });
+
+        deleteFormButton.addEventListener('click', function(event) {
+            console.log('inside');
+            event.preventDefault();
+            closePopup(deleteForm);
+            if (cardForDeletion){
+                cardForDeletion.remove();
+                deleteCard(placeCardId)
+                    .then(res => {
+                        if (res.ok) {
+                            console.log(`Card ${placeCardId} has successfully deleted!`);
+                        }}
+                    )
+                    .catch(() => console.log('Fail deleteCard'))
+            }
+        });
     }
 
     return cardElement

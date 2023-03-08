@@ -1,6 +1,8 @@
 const placeForm = document.querySelector('.add-place-popup');
 const profileForm = document.querySelector('.edit-profile-popup');
 const imageForm = document.querySelector('.image-popup');
+const deleteForm = document.querySelector('.delete-popup');
+const deleteFormButton = document.querySelector('.delete-popup').querySelector('.popup__save-button');
 
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -25,4 +27,5 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-export {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm, title, closePopup, openPopup}
+export {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm,
+nameInput, placeForm, profileForm, deleteForm, deleteFormButton, title, closePopup, openPopup}
