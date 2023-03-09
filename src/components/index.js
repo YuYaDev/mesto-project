@@ -1,7 +1,8 @@
 import '../styles/index.css';
 
 import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, openPopup, closePopup} from './utlis';
+    title, openedPopup} from './utlis';
+import {openPopup, closePopup} from "./modal";
 import {enableValidation} from './validate.js';
 import {addCard, addInitialCards, createCard} from './card.js';
 
@@ -13,10 +14,10 @@ buttonAdd.addEventListener('click', function () {
 });
 
 buttonEdit.addEventListener('click', function () {
-    openPopup(profileForm);
-
     name.value = nameInput.textContent;
     about.value = jobInput.textContent;
+
+    openPopup(profileForm);
 });
 
 
@@ -27,8 +28,7 @@ placeForm.addEventListener('submit', function(event) {
 
     addCard(createCard(title.value, link.value), places);
 
-    title.value = '';
-    link.value = '';
+    placeForm.reset()
 });
 
 
@@ -65,18 +65,11 @@ enableValidation({
     errorClass: 'popup__input-error_active'
 });
 
-[placeForm, profileForm, imageForm].forEach((popup => {
-    popup.addEventListener('click', (evt) => {
+if (openedPopup) {
+    openedPopup.addEventListener('click', (evt) => {
         if (evt.target.querySelector('.popup__container') || evt.target.querySelector('.image-popup__container')) {
-            closePopup(popup)
+            closePopup(openedPopup)
         }
     })
-}))
+}
 
-window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-        [placeForm, profileForm, imageForm].forEach((popup => {
-            closePopup(popup)
-        }))
-    }
-})
