@@ -1,4 +1,4 @@
-const openedPopup = document.querySelector('.popup_opened')
+const popups = document.querySelectorAll('.popup');
 
 const placeForm = document.querySelector('.add-place-popup');
 const profileForm = document.querySelector('.edit-profile-popup');
@@ -44,4 +44,4 @@ const initialCards = [
     }
 ];
 
-export {openedPopup, places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm, title, initialCards}
+export {popups, places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm, title, initialCards}

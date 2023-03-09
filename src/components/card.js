@@ -16,8 +16,6 @@ function createCard(placeName, placeLink) {
     placeTitle.textContent = placeName;
     placePhoto.alt = placeName;
     placePhoto.src = placeLink;
-    // placePhoto.setAttribute('alt', placeName);
-    // placePhoto.setAttribute('src', placeLink);
 
 
     placePhoto.addEventListener('click', function() {
@@ -25,8 +23,6 @@ function createCard(placeName, placeLink) {
         imageForm.querySelector('.image-popup__title').textContent = placeName;
         imageForm.querySelector('.image-popup__photo').alt = placeName;
         imageForm.querySelector('.image-popup__photo').src = placeLink;
-        // imageForm.querySelector('.image-popup__photo').setAttribute('alt', placeName);
-        // imageForm.querySelector('.image-popup__photo').setAttribute('src', placeLink);
     });
 
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
@@ -47,9 +43,6 @@ function addInitialCards() {
     initialCards.forEach((initialCard) => {
         addCard(createCard(initialCard.name, initialCard.link), places)
     })
-    // for (let i = initialCards.length - 1; i >= 0; i--) {
-    //     addCard(createCard(initialCards[i].name, initialCards[i].link), places)
-    // }
 }
 
 export {addCard, addInitialCards, createCard};
