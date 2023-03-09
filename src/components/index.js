@@ -1,7 +1,7 @@
 import '../styles/index.css';
 
 import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, openedPopup} from './utlis';
+    title, popups} from './utlis';
 import {openPopup, closePopup} from "./modal";
 import {enableValidation} from './validate.js';
 import {addCard, addInitialCards, createCard} from './card.js';
@@ -28,7 +28,8 @@ placeForm.addEventListener('submit', function(event) {
 
     addCard(createCard(title.value, link.value), places);
 
-    placeForm.reset()
+    title.value = '';
+    link.value = '';
 });
 
 
@@ -65,11 +66,11 @@ enableValidation({
     errorClass: 'popup__input-error_active'
 });
 
-if (openedPopup) {
-    openedPopup.addEventListener('click', (evt) => {
-        if (evt.target.querySelector('.popup__container') || evt.target.querySelector('.image-popup__container')) {
-            closePopup(openedPopup)
-        }
-    })
-}
 
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')){
+            closePopup(popup);
+        }
+    });
+});
