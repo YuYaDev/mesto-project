@@ -1,6 +1,6 @@
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
-        return !(inputElement.validity.valid || /[^a-zа-яё\s-]+/ig.test(inputElement.value));
+        return !inputElement.validity.valid;
     });
 };
 
@@ -31,21 +31,18 @@ const toggleButtonState = (inputList, submitButton, settings) => {
 
 
 const checkInputValidity = (formElement, inputElement, settings) => {
-    if (!inputElement.validity.valid) {
-        if (inputElement.id === 'place-link') {
-            inputElement.dataError = "Введите адрес сайта.";
-        } else {
-            inputElement.dataError = "Вы пропустили это поле.";
-        }
-        showInputError(formElement, inputElement, inputElement.dataError, settings);
-    } else if (/[^a-zа-яё\s-]+/ig.test(inputElement.value)) {
-        inputElement.dataError = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.";
+    if (inputElement.validity.patternMismatch) {
+        inputElement.setCustomValidity(inputElement.dataset.errorMessage);
+    } else {
+        inputElement.setCustomValidity("");
+    }
 
-        showInputError(formElement, inputElement, inputElement.dataError, settings);
-    }else {
+    if (!inputElement.validity.valid) {
+        showInputError(formElement, inputElement, inputElement.validationMessage, settings);
+    } else {
         hideInputError(formElement, inputElement, settings);
     }
-};
+}
 
 const setEventListeners = (fieldSet, formElement, settings) => {
     const inputList = Array.from(fieldSet.querySelectorAll(settings.inputSelector));
