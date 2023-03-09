@@ -50,7 +50,8 @@
                         <span class="popup__input-error profile-name-error">Вы пропустили это поле.</span>
 
                         <input class="popup__input popup__input_type_about" type="text" id="profile-about" aria-label="о себе"
-                                   placeholder="Исследователь океана" name="about" minlength="2" maxlength="200" required>
+                                   placeholder="Исследователь океана" name="about" minlength="2" maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
+                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
 
                         <span class="popup__input-error profile-about-error">Вы пропустили это поле.</span>
                     </fieldset>
