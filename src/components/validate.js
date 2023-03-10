@@ -1,5 +1,6 @@
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
+
         return !inputElement.validity.valid;
     });
 };
@@ -31,31 +32,23 @@ const toggleButtonState = (inputList, submitButton, settings) => {
 
 
 const checkInputValidity = (formElement, inputElement, settings) => {
-    if (inputElement.validity.patternMismatch) {
-        inputElement.setCustomValidity(inputElement.dataset.errorMessage);
+    if (inputElement.id === 'place-link' || inputElement.id === 'avatar-update-link') {
+        inputElement.data = "Введите адрес сайта."
     } else {
-        inputElement.setCustomValidity("");
+        inputElement.data = "Вы пропустили это поле."
     }
-
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage, settings);
+        showInputError(formElement, inputElement, inputElement.data, settings);
     } else {
         hideInputError(formElement, inputElement, settings);
     }
-}
+};
 
 const setEventListeners = (fieldSet, formElement, settings) => {
     const inputList = Array.from(fieldSet.querySelectorAll(settings.inputSelector));
     const submitButton = formElement.querySelector(settings.submitButtonSelector);
 
     toggleButtonState(inputList, submitButton, settings);
-
-
-    formElement.addEventListener('reset', () => {
-        setTimeout(() => {
-            toggleButtonState(inputList, submitButton, settings)
-        }, 0);
-    });
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
