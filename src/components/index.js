@@ -2,7 +2,7 @@ import '../styles/index.css';
 
 import {
     places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    deleteForm, title, avatarLink, openPopup, closePopup, avatarButton, avatarContainer, updateAvatarForm
+    deleteForm, title, avatarLink, openPopup, closePopup, avatarButton, avatarContainer, updateAvatarForm, renderSaving
 } from './utlis';
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
@@ -12,11 +12,6 @@ let ownerId = '';
 
 
 getUserInfo()
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        }}
-    )
     .then((user_info) => {
         nameInput.textContent = user_info.name;
         jobInput.textContent = user_info.about;
@@ -26,11 +21,6 @@ getUserInfo()
     .catch(() => console.log('Fail getUserInfo'))
 
 getInitialCards()
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        }}
-    )
     .then((cardsArray) => {
         cardsArray.forEach((card) => {
             let isMyCard = ownerId === card.owner._id;
@@ -53,51 +43,48 @@ buttonEdit.addEventListener('click', function () {
 
 placeForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    closePopup(placeForm);
+    renderSaving(true);
     addNewCard(title.value, link.value)
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }}
-        )
         .then((card) => {
             addCard(createCard(card.name, card.link, card.likes.length, card._id, true), places)
         })
-
-    title.value = '';
-    link.value = '';
+        .catch(() => console.log('Fail addNewPlace'))
+        .finally(() => {
+            renderSaving(false);
+            closePopup(placeForm);
+            title.value = '';
+            link.value = '';
+        })
 });
 
 
 profileForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    closePopup(profileForm);
-
+    renderSaving(true);
     updateUserInfo(name.value, about.value)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }})
         .then((data) => {
             nameInput.textContent = data.name;
             jobInput.textContent = data.about;
         })
         .catch(() => console.log('Fail updateUserInfo'))
-});
+        .finally(() => {
+            renderSaving(false);
+            closePopup(profileForm);
+        })
+    });
 
 updateAvatarForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    closePopup(updateAvatarForm);
-    console.log(link.value);
+    renderSaving(true);
     updateUserAvatar(avatarLink.value)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }})
         .then((user_info) => {
             avatar.setAttribute("src", user_info.avatar);
         })
         .catch(() => console.log('Fail updateUserAvatar'))
+        .finally(() => {
+            renderSaving(false);
+            closePopup(updateAvatarForm);
+        })
 });
 
 document.querySelector('.edit-profile-popup__close-button').addEventListener('click', function() {

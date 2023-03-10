@@ -11,6 +11,11 @@ export const getUserInfo = () => {
         headers: {
             authorization: config.headers.authorization
         }
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -25,6 +30,11 @@ export const updateUserInfo = (newUserName, newUserDescription) => {
             name: newUserName,
             about: newUserDescription
         })
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -33,6 +43,11 @@ export const getInitialCards = () => {
         headers: {
             authorization: config.headers.authorization
         }
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -47,6 +62,11 @@ export const addNewCard = (cardName, cardLink) => {
             name: cardName,
             link: cardLink
         })
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -56,6 +76,11 @@ export const deleteCard = (cardId) => {
         headers: {
             authorization: config.headers.authorization,
         }
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -65,6 +90,11 @@ export const addLikeCard = (cardId) => {
         headers: {
             authorization: config.headers.authorization,
         }
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -74,6 +104,11 @@ export const deleteLikeCard = (cardId) => {
         headers: {
             authorization: config.headers.authorization,
         }
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }
 
@@ -87,5 +122,10 @@ export const updateUserAvatar = (avatarUrl) => {
         body: JSON.stringify({
             avatar: avatarUrl
         })
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     });
 }

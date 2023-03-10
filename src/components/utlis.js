@@ -14,6 +14,7 @@ const title = document.querySelector('.popup__input_type_title');
 const link = document.querySelector('.popup__input_type_link');
 const avatarLink = document.querySelector('.popup__input_type_avatar_link');
 
+
 const nameInput = document.querySelector('.profile__name');
 const jobInput = document.querySelector('.profile__status');
 const avatar = document.querySelector('.profile__avatar');
@@ -31,5 +32,15 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
+function renderSaving(isSaving){
+    const currentForm = document.querySelector('.popup_opened');
+    const saveButton = currentForm.querySelector('.popup__save-button');
+    if (isSaving) {
+        saveButton.textContent = "Сохранение...";
+    }else {
+        saveButton.textContent = "Сохранить";
+    }
+}
+
 export {places, link, name, about, avatar, avatarButton, avatarContainer, jobInput, buttonAdd, buttonEdit, imageForm,
-nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink, closePopup, openPopup}
+nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink, closePopup, openPopup, renderSaving}

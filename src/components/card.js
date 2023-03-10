@@ -28,20 +28,12 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
         if (evt.target.classList.contains('place__like-button_active')) {
             deleteLikeCard(placeCardId)
-                .then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    }})
                 .then((data) => {
                     placeLikes.textContent = data.likes.length;
                 })
                 .catch(() => console.log('Fail deleteLike'))
         }else {
             addLikeCard(placeCardId)
-                .then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    }})
                 .then((data) => {
                     placeLikes.textContent = data.likes.length;
                 })
@@ -65,16 +57,13 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
             if (cardForDeletion){
                 cardForDeletion.remove();
                 deleteCard(placeCardId)
-                    .then(res => {
-                        if (res.ok) {
-                            console.log(`Card ${placeCardId} has successfully deleted!`);
-                        }}
-                    )
+                    .then(() => {
+                        console.log(`Card ${placeCardId} has successfully deleted!`);
+                    })
                     .catch(() => console.log('Fail deleteCard'))
             }
         });
     }
-
     return cardElement
 }
 
