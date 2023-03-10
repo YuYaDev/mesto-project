@@ -46,14 +46,13 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
 
     let cardForDeletion = undefined;
     if(hasDeleteButton){
-        cardElement.innerHTML += '<button class="place__delete-button" type="button"></button>';
+        cardElement.insertAdjacentHTML('beforeend','<button class="place__delete-button" type="button"></button>');
         cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
             openPopup(deleteForm);
             cardForDeletion = cardElement;
           });
 
         deleteFormButton.addEventListener('click', function(event) {
-            console.log('inside');
             event.preventDefault();
             closePopup(deleteForm);
             if (cardForDeletion){
@@ -62,12 +61,26 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
                     .then(() => {
                         console.log(`Card ${placeCardId} has successfully deleted!`);
                     })
-                    .catch(() => console.log('Fail deleteCard'))
+                    .catch(() => console.log(`Fail deleteCard for cardId: ${placeCardId}`))
             }
         });
     }
     return cardElement
 }
+
+/*export function deleteCard(event,  placeCardId, cardElement)  {
+    event.preventDefault();
+    closePopup(deleteForm);
+    if (cardForDeletion){
+        cardElement.remove();
+        deleteCard(placeCardId)
+            .then(() => {
+                console.log(`Card ${placeCardId} has successfully deleted!`);
+            })
+            .catch(() => console.log(`Fail deleteCard for cardId: ${placeCardId}`))
+    }
+}*/
+
 
 function addCard(card, container) {
     container.prepend(card);

@@ -8,6 +8,7 @@ const updateAvatarForm = document.querySelector('.update-avatar-popup');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 
+const popups = document.querySelectorAll('.popup');
 const name = document.querySelector('.popup__input_type_name');
 const about = document.querySelector('.popup__input_type_about');
 const title = document.querySelector('.popup__input_type_title');
@@ -23,6 +24,5 @@ const avatarContainer = document.querySelector('.profile__avatar-container');
 
 const places = document.querySelector('.places');
 
-
-export {places, link, name, about, avatar, avatarButton, avatarContainer, jobInput, buttonAdd, buttonEdit, imageForm,
+export {popups, places, link, name, about, avatar, avatarButton, avatarContainer, jobInput, buttonAdd, buttonEdit, imageForm,
 nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink}

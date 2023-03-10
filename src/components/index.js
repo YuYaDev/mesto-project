@@ -1,7 +1,6 @@
 import '../styles/index.css';
 
-import {
-    places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
+import {popups, places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
     deleteForm, title, avatarLink, avatarButton, avatarContainer, updateAvatarForm} from './utlis';
 import {openPopup, closePopup, renderSaving} from "./modal";
 import {enableValidation} from './validate.js';
@@ -99,6 +98,7 @@ document.querySelector('.image-popup__close-button').addEventListener('click', f
 
 document.querySelector('.delete-popup__close-button').addEventListener('click', function() {
     closePopup(deleteForm);
+
 });
 
 document.querySelector('.update-avatar__close-button').addEventListener('click', function() {
@@ -127,7 +127,6 @@ enableValidation({
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
 });
-
 
 popups.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
