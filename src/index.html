@@ -97,8 +97,23 @@
         <div class="popup delete-popup">
             <div class="popup__container">
                 <button class="popup__close-button delete-popup__close-button" type="button"></button>
-                <p class="delete-popup__title">Вы уверены?</p>
+                <p class="popup__title">Вы уверены?</p>
                 <button class="popup__save-button" type="submit">Да</button>
+            </div>
+        </div>
+
+        <div class="popup update-avatar-popup">
+            <div class="popup__container">
+                <button class="popup__close-button update-avatar__close-button" type="button"></button>
+                <p class="popup__title">Обновить аватар</p>
+                <form class="popup__form" name="UpdateAvatarForm" novalidate>
+                    <fieldset class="popup__fieldset">
+                        <input class="popup__input popup__input_type_avatar_link" type="url" id="avatar-update-link" aria-label="ссылка на фото"
+                               placeholder="Ссылка на фото" name="avatar-link" required>
+                        <span class="popup__input-error avatar-update-link-error">Введите адрес сайта.</span>
+                    </fieldset>
+                    <button class="popup__save-button" type="submit">Сохранить</button>
+                </form>
             </div>
         </div>
 

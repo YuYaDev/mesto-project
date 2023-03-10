@@ -32,7 +32,7 @@ const toggleButtonState = (inputList, submitButton, settings) => {
 
 
 const checkInputValidity = (formElement, inputElement, settings) => {
-    if (inputElement.id === 'place-link') {
+    if (inputElement.id === 'place-link' || inputElement.id === 'avatar-update-link') {
         inputElement.data = "Введите адрес сайта."
     } else {
         inputElement.data = "Вы пропустили это поле."

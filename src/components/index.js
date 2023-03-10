@@ -1,7 +1,9 @@
 import '../styles/index.css';
 
-import {places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    deleteForm, title, openPopup, closePopup} from './utlis';
+import {
+    places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
+    deleteForm, title, avatarLink, openPopup, closePopup, avatarButton, avatarContainer, updateAvatarForm
+} from './utlis';
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
 import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
@@ -83,6 +85,20 @@ profileForm.addEventListener('submit', function(event) {
         .catch(() => console.log('Fail updateUserInfo'))
 });
 
+updateAvatarForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    closePopup(updateAvatarForm);
+    console.log(link.value);
+    updateUserAvatar(avatarLink.value)
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }})
+        .then((user_info) => {
+            avatar.setAttribute("src", user_info.avatar);
+        })
+        .catch(() => console.log('Fail updateUserAvatar'))
+});
 
 document.querySelector('.edit-profile-popup__close-button').addEventListener('click', function() {
     closePopup(profileForm);
@@ -100,16 +116,22 @@ document.querySelector('.delete-popup__close-button').addEventListener('click', 
     closePopup(deleteForm);
 });
 
-avatar.addEventListener('mouseover', function () {
-    toggleEditAvatarButton();
-});
-avatar.addEventListener('mouseout', function () {
-    toggleEditAvatarButton();
+document.querySelector('.update-avatar__close-button').addEventListener('click', function() {
+    closePopup(updateAvatarForm);
 });
 
+avatarContainer.addEventListener('mouseover', function () {
+    toggleEditAvatarButton();
+});
+avatarContainer.addEventListener('mouseout', function () {
+    toggleEditAvatarButton();
+});
 function toggleEditAvatarButton(){
-    avatar.classList.toggle('profile_avatar-edit-button_active');
+    avatarButton.classList.toggle('profile_avatar-edit-button_active');
 }
+avatarButton.addEventListener('click', function() {
+    openPopup(updateAvatarForm);
+});
 
 enableValidation({
     formSelector: '.popup__form',
