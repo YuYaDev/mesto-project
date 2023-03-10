@@ -28,8 +28,7 @@ placeForm.addEventListener('submit', function(event) {
 
     addCard(createCard(title.value, link.value), places);
 
-    title.value = '';
-    link.value = '';
+    document.forms["PlaceForm"].reset();
 });
 
 
