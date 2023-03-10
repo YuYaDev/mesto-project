@@ -50,46 +50,27 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
         cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
             openPopup(deleteForm);
             cardForDeletion = cardElement;
+            deleteFormButton.deletecardid = placeCardId;
           });
 
         deleteFormButton.addEventListener('click', function(event) {
             event.preventDefault();
             closePopup(deleteForm);
-            if (cardForDeletion){
-                cardForDeletion.remove();
-                deleteCard(placeCardId)
+            if (deleteFormButton.deletecardid === placeCardId){
+                cardElement.remove();
+                deleteCard(deleteFormButton.deletecardid)
                     .then(() => {
-                        console.log(`Card ${placeCardId} has successfully deleted!`);
+                        console.log(`Card ${deleteFormButton.deletecardid} has successfully deleted!`);
                     })
-                    .catch(() => console.log(`Fail deleteCard for cardId: ${placeCardId}`))
+                    .catch(() => console.log(`Fail deleteCard for cardId: ${deleteFormButton.deletecardid}`))
             }
         });
     }
     return cardElement
 }
 
-/*export function deleteCard(event,  placeCardId, cardElement)  {
-    event.preventDefault();
-    closePopup(deleteForm);
-    if (cardForDeletion){
-        cardElement.remove();
-        deleteCard(placeCardId)
-            .then(() => {
-                console.log(`Card ${placeCardId} has successfully deleted!`);
-            })
-            .catch(() => console.log(`Fail deleteCard for cardId: ${placeCardId}`))
-    }
-}*/
-
-
 function addCard(card, container) {
     container.prepend(card);
 }
 
-function addInitialCards() {
-    initialCards.forEach((initialCard) => {
-        addCard(createCard(initialCard.name, initialCard.link), places)
-    })
-}
-
-export {addCard, addInitialCards, createCard};
+export {addCard, createCard};
