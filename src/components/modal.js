@@ -14,4 +14,14 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-export {openPopup, closePopup};
+function renderSaving(isSaving){
+    const currentForm = document.querySelector('.popup_opened');
+    const saveButton = currentForm.querySelector('.popup__save-button');
+    if (isSaving) {
+        saveButton.textContent = "Сохранение...";
+    }else {
+        saveButton.textContent = "Сохранить";
+    }
+}
+
+export {openPopup, closePopup, renderSaving};

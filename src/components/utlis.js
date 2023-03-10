@@ -24,23 +24,5 @@ const avatarContainer = document.querySelector('.profile__avatar-container');
 const places = document.querySelector('.places');
 
 
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-}
-
-function renderSaving(isSaving){
-    const currentForm = document.querySelector('.popup_opened');
-    const saveButton = currentForm.querySelector('.popup__save-button');
-    if (isSaving) {
-        saveButton.textContent = "Сохранение...";
-    }else {
-        saveButton.textContent = "Сохранить";
-    }
-}
-
 export {places, link, name, about, avatar, avatarButton, avatarContainer, jobInput, buttonAdd, buttonEdit, imageForm,
-nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink, closePopup, openPopup, renderSaving}
+nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink}

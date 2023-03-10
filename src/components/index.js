@@ -1,18 +1,14 @@
 import '../styles/index.css';
 
-import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, popups} from './utlis';
-import {openPopup, closePopup} from "./modal";
 import {
     places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    deleteForm, title, avatarLink, openPopup, closePopup, avatarButton, avatarContainer, updateAvatarForm, renderSaving
-} from './utlis';
+    deleteForm, title, avatarLink, avatarButton, avatarContainer, updateAvatarForm} from './utlis';
+import {openPopup, closePopup, renderSaving} from "./modal";
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
 import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
 
 let ownerId = '';
-
 
 getUserInfo()
     .then((user_info) => {
