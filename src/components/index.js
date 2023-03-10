@@ -1,12 +1,34 @@
 import '../styles/index.css';
 
-import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    title, openPopup, closePopup} from './utlis';
+import {
+    places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
+    deleteForm, title, avatarLink, openPopup, closePopup, avatarButton, avatarContainer, updateAvatarForm, renderSaving
+} from './utlis';
 import {enableValidation} from './validate.js';
-import {addCard, addInitialCards, createCard} from './card.js';
+import {addCard, createCard} from './card.js';
+import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
+
+let ownerId = '';
 
 
-addInitialCards()
+getUserInfo()
+    .then((user_info) => {
+        nameInput.textContent = user_info.name;
+        jobInput.textContent = user_info.about;
+        avatar.setAttribute("src", user_info.avatar);
+        ownerId = user_info._id;
+    })
+    .catch(() => console.log('Fail getUserInfo'))
+
+getInitialCards()
+    .then((cardsArray) => {
+        cardsArray.forEach((card) => {
+            let isMyCard = ownerId === card.owner._id;
+            addCard(createCard(card.name, card.link, card.likes.length, card._id, isMyCard), places)
+        })
+    })
+    .catch(() => console.log('Fail getInitialCards'))
+
 
 buttonAdd.addEventListener('click', function () {
     openPopup(placeForm);
@@ -14,7 +36,6 @@ buttonAdd.addEventListener('click', function () {
 
 buttonEdit.addEventListener('click', function () {
     openPopup(profileForm);
-
     name.value = nameInput.textContent;
     about.value = jobInput.textContent;
 });
@@ -22,25 +43,49 @@ buttonEdit.addEventListener('click', function () {
 
 placeForm.addEventListener('submit', function(event) {
     event.preventDefault();
-
-    closePopup(placeForm);
-
-    addCard(createCard(title.value, link.value), places);
-
-    title.value = '';
-    link.value = '';
+    renderSaving(true);
+    addNewCard(title.value, link.value)
+        .then((card) => {
+            addCard(createCard(card.name, card.link, card.likes.length, card._id, true), places)
+        })
+        .catch(() => console.log('Fail addNewPlace'))
+        .finally(() => {
+            renderSaving(false);
+            closePopup(placeForm);
+            title.value = '';
+            link.value = '';
+        })
 });
 
 
 profileForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    renderSaving(true);
+    updateUserInfo(name.value, about.value)
+        .then((data) => {
+            nameInput.textContent = data.name;
+            jobInput.textContent = data.about;
+        })
+        .catch(() => console.log('Fail updateUserInfo'))
+        .finally(() => {
+            renderSaving(false);
+            closePopup(profileForm);
+        })
+    });
 
-    closePopup(profileForm);
-
-    nameInput.textContent = name.value;
-    jobInput.textContent = about.value;
+updateAvatarForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    renderSaving(true);
+    updateUserAvatar(avatarLink.value)
+        .then((user_info) => {
+            avatar.setAttribute("src", user_info.avatar);
+        })
+        .catch(() => console.log('Fail updateUserAvatar'))
+        .finally(() => {
+            renderSaving(false);
+            closePopup(updateAvatarForm);
+        })
 });
-
 
 document.querySelector('.edit-profile-popup__close-button').addEventListener('click', function() {
     closePopup(profileForm);
@@ -54,6 +99,26 @@ document.querySelector('.image-popup__close-button').addEventListener('click', f
     closePopup(imageForm);
 });
 
+document.querySelector('.delete-popup__close-button').addEventListener('click', function() {
+    closePopup(deleteForm);
+});
+
+document.querySelector('.update-avatar__close-button').addEventListener('click', function() {
+    closePopup(updateAvatarForm);
+});
+
+avatarContainer.addEventListener('mouseover', function () {
+    toggleEditAvatarButton();
+});
+avatarContainer.addEventListener('mouseout', function () {
+    toggleEditAvatarButton();
+});
+function toggleEditAvatarButton(){
+    avatarButton.classList.toggle('profile_avatar-edit-button_active');
+}
+avatarButton.addEventListener('click', function() {
+    openPopup(updateAvatarForm);
+});
 
 enableValidation({
     formSelector: '.popup__form',
