@@ -1,5 +1,8 @@
 import '../styles/index.css';
 
+import {places, link, name, about, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
+    title, popups} from './utlis';
+import {openPopup, closePopup} from "./modal";
 import {
     places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
     deleteForm, title, avatarLink, openPopup, closePopup, avatarButton, avatarContainer, updateAvatarForm, renderSaving
@@ -35,9 +38,9 @@ buttonAdd.addEventListener('click', function () {
 });
 
 buttonEdit.addEventListener('click', function () {
-    openPopup(profileForm);
     name.value = nameInput.textContent;
     about.value = jobInput.textContent;
+    openPopup(profileForm);
 });
 
 
@@ -52,8 +55,7 @@ placeForm.addEventListener('submit', function(event) {
         .finally(() => {
             renderSaving(false);
             closePopup(placeForm);
-            title.value = '';
-            link.value = '';
+            document.forms["PlaceForm"].reset();
         })
 });
 
@@ -128,4 +130,13 @@ enableValidation({
     inactiveButtonClass: 'popup__save-button_inactive',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
+});
+
+
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')){
+            closePopup(popup);
+        }
+    });
 });

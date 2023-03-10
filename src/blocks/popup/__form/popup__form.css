@@ -2,6 +2,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: 183px;
+    min-height: 183px;
     justify-content: space-between;
 }

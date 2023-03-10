@@ -48,11 +48,13 @@
 
                     <fieldset class="popup__fieldset">
                         <input class="popup__input popup__input_type_name" type="text" id="profile-name" aria-label="имя"
-                                   placeholder="Жак-Ив Кусто" name="name" minlength="2" maxlength="40" required>
+                                   placeholder="Жак-Ив Кусто" name="name" minlength="2" maxlength="40" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
+                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
                         <span class="popup__input-error profile-name-error">Вы пропустили это поле.</span>
 
                         <input class="popup__input popup__input_type_about" type="text" id="profile-about" aria-label="о себе"
-                                   placeholder="Исследователь океана" name="about" minlength="2" maxlength="200" required>
+                                   placeholder="Исследователь океана" name="about" minlength="2" maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
+                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
 
                         <span class="popup__input-error profile-about-error">Вы пропустили это поле.</span>
                     </fieldset>
@@ -70,7 +72,8 @@
 
                     <fieldset class="popup__fieldset">
                         <input class="popup__input popup__input_type_title" type="text" id="place-name" aria-label="название"
-                                   placeholder="Название" name="title" minlength="2" maxlength="30" required>
+                                   placeholder="Название" name="title" minlength="2" maxlength="30" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
+                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
 
                         <span class="popup__input-error place-name-error">Вы пропустили это поле.</span>
 
