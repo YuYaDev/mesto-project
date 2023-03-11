@@ -2,12 +2,12 @@ import '../styles/index.css';
 
 import {
     places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, nameInput, placeForm, profileForm,
-    title, avatarLink, avatarButton, avatarContainer, updateAvatarForm, popups, deleteFormButton, deleteForm
+    title, avatarLink, avatarButton, avatarContainer, updateAvatarForm, popups
 } from './utlis';
 import {openPopup, closePopup, renderSaving} from "./modal";
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
-import {addNewCard, deleteCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
+import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
 
 export let ownerId = '';
 
