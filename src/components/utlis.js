@@ -1,3 +1,5 @@
+const popups = document.querySelectorAll('.popup')
+
 const placeForm = document.querySelector('.add-place-popup');
 const profileForm = document.querySelector('.edit-profile-popup');
 const imageForm = document.querySelector('.image-popup');
@@ -24,5 +26,18 @@ const avatarContainer = document.querySelector('.profile__avatar-container');
 const places = document.querySelector('.places');
 
 
+const checkResponse = (res) => {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+}
+
+
+const request = (url, options) => {
+    return fetch(url, options).then(checkResponse);
+}
+
+
 export {places, link, name, about, avatar, avatarButton, avatarContainer, jobInput, buttonAdd, buttonEdit, imageForm,
-nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink}
+nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink, popups, request}

@@ -1,32 +1,34 @@
 import '../styles/index.css';
 
 import {
-    places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, imageForm, nameInput, placeForm, profileForm,
-    deleteForm, title, avatarLink, avatarButton, avatarContainer, updateAvatarForm} from './utlis';
+    places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, nameInput, placeForm, profileForm,
+    title, avatarLink, avatarButton, avatarContainer, updateAvatarForm, popups, deleteFormButton, deleteForm
+} from './utlis';
 import {openPopup, closePopup, renderSaving} from "./modal";
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
-import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
+import {addNewCard, deleteCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
 
-let ownerId = '';
+export let ownerId = '';
 
-getUserInfo()
-    .then((user_info) => {
+
+Promise.all([getUserInfo(), getInitialCards()])
+    .then(([user_info, cardsArray]) => {
         nameInput.textContent = user_info.name;
         jobInput.textContent = user_info.about;
         avatar.setAttribute("src", user_info.avatar);
         ownerId = user_info._id;
-    })
-    .catch(() => console.log('Fail getUserInfo'))
 
-getInitialCards()
-    .then((cardsArray) => {
+
         cardsArray.forEach((card) => {
-            let isMyCard = ownerId === card.owner._id;
-            addCard(createCard(card.name, card.link, card.likes.length, card._id, isMyCard), places)
-        })
-    })
-    .catch(() => console.log('Fail getInitialCards'))
+                const isMyCard = ownerId === card.owner._id;
+                addCard(createCard(card.likes, card.name, card.link, card._id, isMyCard), places)
+            })
+        }
+    )
+    .catch(() => {
+        console.log('Fail getUserInfo, getInitialCards')
+    });
 
 
 buttonAdd.addEventListener('click', function () {
@@ -45,13 +47,14 @@ placeForm.addEventListener('submit', function(event) {
     renderSaving(true);
     addNewCard(title.value, link.value)
         .then((card) => {
-            addCard(createCard(card.name, card.link, card.likes.length, card._id, true), places)
+            addCard(createCard(card.likes, card.name, card.link, card._id, true), places);
+            renderSaving(false);
+            closePopup(placeForm);
+            document.forms["PlaceForm"].reset();
         })
         .catch(() => console.log('Fail addNewPlace'))
         .finally(() => {
             renderSaving(false);
-            closePopup(placeForm);
-            document.forms["PlaceForm"].reset();
         })
 });
 
@@ -63,11 +66,12 @@ profileForm.addEventListener('submit', function(event) {
         .then((data) => {
             nameInput.textContent = data.name;
             jobInput.textContent = data.about;
+            renderSaving(false);
+            closePopup(profileForm);
         })
         .catch(() => console.log('Fail updateUserInfo'))
         .finally(() => {
             renderSaving(false);
-            closePopup(profileForm);
         })
     });
 
@@ -77,33 +81,39 @@ updateAvatarForm.addEventListener('submit', function(event) {
     updateUserAvatar(avatarLink.value)
         .then((user_info) => {
             avatar.setAttribute("src", user_info.avatar);
+            renderSaving(false);
+            closePopup(updateAvatarForm);
         })
         .catch(() => console.log('Fail updateUserAvatar'))
         .finally(() => {
             renderSaving(false);
-            closePopup(updateAvatarForm);
         })
 });
 
-document.querySelector('.edit-profile-popup__close-button').addEventListener('click', function() {
-    closePopup(profileForm);
-});
-
-document.querySelector('.add-place-popup__close-button').addEventListener('click', function() {
-    closePopup(placeForm);
-});
-
-document.querySelector('.image-popup__close-button').addEventListener('click', function() {
-    closePopup(imageForm);
-});
-
-document.querySelector('.delete-popup__close-button').addEventListener('click', function() {
-    closePopup(deleteForm);
-});
-
-document.querySelector('.update-avatar__close-button').addEventListener('click', function() {
-    closePopup(updateAvatarForm);
-});
+// let cardForDeletion = undefined;
+//
+// document.querySelectorAll('.place').forEach((place) => {
+//     if (place.querySelector('.place__delete-button')) {
+//         place.querySelector('.place__delete-button').addEventListener('click', function(event) {
+//             event.preventDefault();
+//             cardForDeletion = event.parentElement;
+//             openPopup(deleteForm);
+//
+//         })
+//     }
+// })
+//
+// deleteFormButton.addEventListener('click', function(event) {
+//         event.preventDefault();
+//         closePopup(deleteForm);
+//         deleteCard(cardForDeletion._id)
+//             .then(() => {
+//                 cardForDeletion.remove();
+//                 console.log(`Card ${cardForDeletion._id} has successfully deleted!`);
+//                 })
+//             .catch(() => console.log('Fail deleteCard'))
+//         }
+// );
 
 avatarContainer.addEventListener('mouseover', function () {
     toggleEditAvatarButton();
