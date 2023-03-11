@@ -1,13 +1,13 @@
 import '../styles/index.css';
 
 import {
-    places, link, name, about, avatar, jobInput, buttonAdd, buttonEdit, nameInput, placeForm, profileForm,
-    title, avatarLink, avatarButton, avatarContainer, updateAvatarForm, popups
+    places, name, about, avatar, jobInput, buttonAdd, buttonEdit, nameInput, placeForm, profileForm, avatarButton,
+    avatarContainer, updateAvatarForm, popups
 } from './utlis';
-import {openPopup, closePopup, renderSaving} from "./modal";
+import {openPopup, closePopup, handleProfileFormSubmit, handleAvatarFormSubmit, handlePlaceFormSubmit} from "./modal";
 import {enableValidation} from './validate.js';
 import {addCard, createCard} from './card.js';
-import {addNewCard, getInitialCards, getUserInfo, updateUserAvatar, updateUserInfo} from "./api";
+import {getInitialCards, getUserInfo} from "./api";
 
 export let ownerId = '';
 
@@ -43,51 +43,17 @@ buttonEdit.addEventListener('click', function () {
 
 
 placeForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    renderSaving(true);
-    addNewCard(title.value, link.value)
-        .then((card) => {
-            addCard(createCard(card.likes, card.name, card.link, card._id, true), places);
-            renderSaving(false);
-            closePopup(placeForm);
-            document.forms["PlaceForm"].reset();
-        })
-        .catch(() => console.log('Fail addNewPlace'))
-        .finally(() => {
-            renderSaving(false);
-        })
+    handlePlaceFormSubmit(event);
 });
 
 
 profileForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    renderSaving(true);
-    updateUserInfo(name.value, about.value)
-        .then((data) => {
-            nameInput.textContent = data.name;
-            jobInput.textContent = data.about;
-            renderSaving(false);
-            closePopup(profileForm);
-        })
-        .catch(() => console.log('Fail updateUserInfo'))
-        .finally(() => {
-            renderSaving(false);
-        })
-    });
+    handleProfileFormSubmit(event);
+});
+
 
 updateAvatarForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    renderSaving(true);
-    updateUserAvatar(avatarLink.value)
-        .then((user_info) => {
-            avatar.setAttribute("src", user_info.avatar);
-            renderSaving(false);
-            closePopup(updateAvatarForm);
-        })
-        .catch(() => console.log('Fail updateUserAvatar'))
-        .finally(() => {
-            renderSaving(false);
-        })
+    handleAvatarFormSubmit(event);
 });
 
 
