@@ -1,4 +1,5 @@
-import {imageForm, deleteForm, openPopup, closePopup, deleteFormButton} from "./utlis";
+import {openPopup, closePopup} from "./modal";
+import {imageForm, deleteForm, deleteFormButton} from "./utlis";
 import {addLikeCard, deleteCard, deleteLikeCard} from "./api";
 
 function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDeleteButton) {
@@ -15,14 +16,15 @@ function createCard(placeName, placeLink, placeLikeCount, placeCardId, hasDelete
 
     placeLikes.textContent = placeLikeCount;
     placeTitle.textContent = placeName;
-    placePhoto.setAttribute('alt', placeName);
-    placePhoto.setAttribute('src', placeLink);
+    placePhoto.alt = placeName;
+    placePhoto.src = placeLink;
+
 
     placePhoto.addEventListener('click', function() {
         openPopup(imageForm);
         imageForm.querySelector('.image-popup__title').textContent = placeName;
-        imageForm.querySelector('.image-popup__photo').setAttribute('alt', placeName);
-        imageForm.querySelector('.image-popup__photo').setAttribute('src', placeLink);
+        imageForm.querySelector('.image-popup__photo').alt = placeName;
+        imageForm.querySelector('.image-popup__photo').src = placeLink;
     });
 
     cardElement.querySelector('.place__like-button').addEventListener('click', function(evt) {
@@ -71,4 +73,10 @@ function addCard(card, container) {
     container.prepend(card);
 }
 
-export {addCard, createCard};
+function addInitialCards() {
+    initialCards.forEach((initialCard) => {
+        addCard(createCard(initialCard.name, initialCard.link), places)
+    })
+}
+
+export {addCard, addInitialCards, createCard};
