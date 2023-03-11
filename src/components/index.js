@@ -90,30 +90,6 @@ updateAvatarForm.addEventListener('submit', function(event) {
         })
 });
 
-// let cardForDeletion = undefined;
-//
-// document.querySelectorAll('.place').forEach((place) => {
-//     if (place.querySelector('.place__delete-button')) {
-//         place.querySelector('.place__delete-button').addEventListener('click', function(event) {
-//             event.preventDefault();
-//             cardForDeletion = event.parentElement;
-//             openPopup(deleteForm);
-//
-//         })
-//     }
-// })
-//
-// deleteFormButton.addEventListener('click', function(event) {
-//         event.preventDefault();
-//         closePopup(deleteForm);
-//         deleteCard(cardForDeletion._id)
-//             .then(() => {
-//                 cardForDeletion.remove();
-//                 console.log(`Card ${cardForDeletion._id} has successfully deleted!`);
-//                 })
-//             .catch(() => console.log('Fail deleteCard'))
-//         }
-// );
 
 avatarContainer.addEventListener('mouseover', function () {
     toggleEditAvatarButton();

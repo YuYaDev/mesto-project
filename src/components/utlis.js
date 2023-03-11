@@ -3,8 +3,6 @@ const popups = document.querySelectorAll('.popup')
 const placeForm = document.querySelector('.add-place-popup');
 const profileForm = document.querySelector('.edit-profile-popup');
 const imageForm = document.querySelector('.image-popup');
-const deleteForm = document.querySelector('.delete-popup');
-const deleteFormButton = document.querySelector('.delete-popup').querySelector('.popup__save-button');
 const updateAvatarForm = document.querySelector('.update-avatar-popup');
 
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -40,4 +38,4 @@ const request = (url, options) => {
 
 
 export {places, link, name, about, avatar, avatarButton, avatarContainer, jobInput, buttonAdd, buttonEdit, imageForm,
-nameInput, placeForm, profileForm,updateAvatarForm, deleteForm, deleteFormButton, title, avatarLink, popups, request}
+nameInput, placeForm, profileForm,updateAvatarForm, title, avatarLink, popups, request}

@@ -1,5 +1,5 @@
-import {openPopup, closePopup} from "./modal";
-import {imageForm, deleteForm, deleteFormButton} from "./utlis";
+import {openPopup} from "./modal";
+import {imageForm} from "./utlis";
 import {addLikeCard, deleteCard, deleteLikeCard} from "./api";
 import {ownerId} from "./index";
 
@@ -61,22 +61,14 @@ function createCard(placeLoadLikes, placeName, placeLink, placeCardId, hasDelete
     if(hasDeleteButton){
         cardElement.innerHTML += '<button class="place__delete-button" type="button"></button>';
         cardElement.querySelector('.place__delete-button').addEventListener('click', function() {
-            openPopup(deleteForm);
             cardForDeletion = cardElement;
+            deleteCard(placeCardId)
+                .then(() => {
+                    cardForDeletion.remove();
+                    console.log(`Card ${placeCardId} has successfully deleted!`);
+                })
+                .catch(() => console.log('Fail deleteCard'))
           });
-
-        deleteFormButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            closePopup(deleteForm);
-            if (cardForDeletion){
-                deleteCard(placeCardId)
-                    .then(() => {
-                        cardForDeletion.remove();
-                        console.log(`Card ${placeCardId} has successfully deleted!`);
-                    })
-                    .catch(() => console.log('Fail deleteCard'))
-            }
-        });
     }
     return cardElement
 }
