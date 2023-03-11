@@ -38,7 +38,7 @@ function handleSubmit(request, event, loadingText = "Сохранение...") {
         .then(() => {
             renderSaving(false, submitButton, initialText);
             closePopup(event.target.parentElement.parentElement);
-            event.target.parentElement.parentElement.reset();
+            document.forms[event.target.name].reset();
         })
         .catch((err) => {
             renderSaving(false, submitButton, initialText);
