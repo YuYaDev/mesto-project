@@ -40,7 +40,7 @@ export const profileProfessionHolder = document.querySelector('#profileprofessio
 
 export const CARD_TEMPLATE_SELECTOR = '.template__element'
 export const BASE_URL = 'https://mesto.nomoreparties.co/v1/plus-cohort-20'
-export const TOKEN = '0499d3b8-89b6-4fc9-a91a-922f11ca9262'
+export const TOKEN = '8e826e83-ec2e-4d15-8279-d177b3176ef2'
 
 //валидация
 export const validatorOptions = {
