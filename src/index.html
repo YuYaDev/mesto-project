@@ -1,136 +1,149 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Проект «Место»</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Место</title>
 </head>
 
-<body class="page">
-
-        <header class="header">
-            <img class="header__logo-pic" src="<%=require('./images/logo-white.svg')%>" alt="Логотип Mesto">
-        </header>
-
-        <main class="content">
-            <section class="profile">
-                <div class="profile__avatar-container">
-                    <img class="profile__avatar" src="<%=require('./images/jhak-iv.jpg')%>" alt="Аватар Жака Кусто">
-                    <button class="profile__avatar-edit-button" type="button"></button>
-                </div>
-
-                <div class="profile__info">
-                    <div class="profile__name-section">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
-
-                        <button class="profile__edit-button" type="button"></button>
-                    </div>
-
-                    <p class="profile__status">Исследователь океана</p>
-                </div>
-
-                <button class="profile__add-button" type="button"></button>
-            </section>
-
-            <section class="places">
-            </section>
-        </main>
-
-        <footer class="footer">
-            <p class="footer__copyright">©2022 Mesto Russia</p>
-        </footer>
-
-        <div class="popup edit-profile-popup">
-            <div class="popup__container">
-                <button class="popup__close-button edit-profile-popup__close-button" aria-label="закрыть форму" type="button"></button>
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__form" name="EditForm" novalidate>
-
-                    <fieldset class="popup__fieldset">
-                        <input class="popup__input popup__input_type_name" type="text" id="profile-name" aria-label="имя"
-                                   placeholder="Жак-Ив Кусто" name="name" minlength="2" maxlength="40" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
-                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
-                        <span class="popup__input-error profile-name-error">Вы пропустили это поле.</span>
-
-                        <input class="popup__input popup__input_type_about" type="text" id="profile-about" aria-label="о себе"
-                                   placeholder="Исследователь океана" name="about" minlength="2" maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
-                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
-
-                        <span class="popup__input-error profile-about-error">Вы пропустили это поле.</span>
-                    </fieldset>
-
-                    <button class="popup__save-button" type="submit">Сохранить</button>
-                </form>
-            </div>
+<body>
+  <div class="page">
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__content">
+          <img class="header__logo" src="<%=require('./images/header_logo.svg')%>"
+            alt="Mesto logo" />
         </div>
+      </header>
 
-        <div class="popup add-place-popup">
-            <div class="popup__container">
-                <button class="popup__close-button add-place-popup__close-button" aria-label="закрыть форму" type="button"></button>
-                <h3 class="popup__title">Новое место</h3>
-                <form class="popup__form" name="PlaceForm" novalidate>
-
-                    <fieldset class="popup__fieldset">
-                        <input class="popup__input popup__input_type_title" type="text" id="place-name" aria-label="название"
-                                   placeholder="Название" name="title" minlength="2" maxlength="30" pattern="^[а-яА-ЯёЁa-zA-Z\s-]+$"
-                               data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" required>
-
-                        <span class="popup__input-error place-name-error">Вы пропустили это поле.</span>
-
-                        <input class="popup__input popup__input_type_link" type="url" id="place-link" aria-label="ссылка на картинку"
-                                   placeholder="Ссылка на картинку" name="link" required>
-
-
-                        <span class="popup__input-error place-link-error">Введите адрес сайта.</span>
-                    </fieldset>
-
-                    <button class="popup__save-button" type="submit">Сохранить</button>
-                </form>
+      <main class="content">
+        <section class="profile">
+          <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Аватар" />
+          <button class="profile__editbutton p__button" type="button" data-target="editavatar" id="editbutton">
+            <img src="<%=require('./images/EditAvatar.svg')%>" alt="редактирование">
+          </button>
+          <div class="profile__info">
+            <div class="profile__edit-name">
+              <h1 class="profile__name">Жак-Ив Кустo</h1>
+              <button class="profile__infobutton p__button" type="button" data-target="profile"
+                id="infobutton">
+                <img src="<%=require('./images/Vector_info.svg')%>" alt="Кнопочка" />
+              </button>
             </div>
-        </div>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button class="profile__addbutton p__button" type="button" data-target="mesto"
+            id="addbutton">
+            <img class="profile__plus" src="<%=require('./images/Vector_add.svg')%>" alt="Плюсик" />
+          </button>
+          
+        </section>
 
-        <div class="popup image-popup">
-            <div class="image-popup__container">
-                <button class="popup__close-button image-popup__close-button" type="button"></button>
-                <img class="image-popup__photo" src="" alt="">
-                <p class="image-popup__title">Название места</p>
-            </div>
-        </div>
+        <section class="elements"></section>
+      </main>
 
-        <div class="popup delete-popup">
-            <div class="popup__container">
-                <button class="popup__close-button delete-popup__close-button" type="button"></button>
-                <p class="popup__title">Вы уверены?</p>
-                <button class="popup__save-button" type="submit">Да</button>
-            </div>
-        </div>
+      <footer class="footer">
+        <p class="footer__text">&#169;2022 Mesto Russia</p>
+      </footer>
+    </div>
+  </div>
 
-        <div class="popup update-avatar-popup">
-            <div class="popup__container">
-                <button class="popup__close-button update-avatar__close-button" type="button"></button>
-                <p class="popup__title">Обновить аватар</p>
-                <form class="popup__form" name="UpdateAvatarForm" novalidate>
-                    <fieldset class="popup__fieldset">
-                        <input class="popup__input popup__input_type_avatar_link" type="url" id="avatar-update-link" aria-label="ссылка на фото"
-                               placeholder="Ссылка на фото" name="avatar-link" required>
-                        <span class="popup__input-error avatar-update-link-error">Введите адрес сайта.</span>
-                    </fieldset>
-                    <button class="popup__save-button" type="submit">Сохранить</button>
-                </form>
-            </div>
-        </div>
+  <div class="popup popup__profile overlay" id="profile">
+    <div class="popup__container">
+      <button class="popup__close close" type="button">
+        <img class="popup__close-icon" src="<%=require('./images/Close_Icon.svg')%>" alt="close" />
+      </button>
+      <form class="popup__form" name="profile" id="profileform" novalidate>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <fieldset class="popup__fieldset">
+          <input class="popup__item" id="profilename" placeholder="Жак-Ив Кусто" type="text"
+            name="name" minlength="2" maxlength="40" required
+            pattern="^[A-Za-zА-Яа-я\-\s]+$"
+            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" />
+          <span class="popup__span profilename-error">Вы пропустили это поле</span>
+          <input class="popup__item" id="profileprofession" placeholder="Исследователь океана"
+            type="text" name="about" minlength="2" maxlength="200" required
+            pattern="^[A-Za-zА-Яа-я\-\s]+$"
+            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" />
+          <span class="popup__span profileprofession-error">Вы пропустили это поле</span>
+        </fieldset>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
 
-        <template id="card-template">
-            <article class="place">
-                <img class="place__img" src="" alt="">
-                <div class="place__footer">
-                    <h2 class="place__name"></h2>
-                    <div class="place__like-container">
-                        <button class="place__like-button" type="button"></button>
-                        <p class="place__like-counter">3</p>
-                    </div>
-                </div>
-            </article>
-        </template>
+  <div class="popup popup__mesto overlay" id="mesto">
+    <div class="popup__container">
+      <button class="popup__close close" type="button">
+        <img class="popup__close-icon" src="<%=require('./images/Close_Icon.svg')%>" alt="close" />
+      </button>
+      <form class="popup__form" name="mesto-form" id="mestoform" novalidate>
+        <h2 class="popup__title">Новое место</h2>
+        <fieldset class="popup__fieldset">
+          <input class="popup__item" id="mestoname" placeholder="Название" type="text"
+            name="name" minlength="2" maxlength="30" required pattern="^[A-Za-zА-Яа-я\-\s]+$"
+            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" />
+          <span class="popup__span mestoname-error">Вы пропустили это поле</span>
+          <input class="popup__item" id="mestolink" placeholder="Ссылка на картинку" type="url"
+            name="link" required
+            pattern="[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?"
+            data-error-message="Введите адрес сайта" />
+          <span class="popup__span mestolink-error">Введите адрес сайта</span>
+        </fieldset>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup__image overlay" id="bigimage">
+    <div class="popup__container popup__container_image">
+      <button type="button" class="popup__close close">
+        <img class="popup__close-icon" src="<%=require('./images/Close_Icon.svg')%>" alt="close" />
+      </button>
+      <img class="popup__bigimage" src="#" alt="ddd" />
+      <h2 class="popup__text"></h2>
+    </div>
+  </div>
+  <!-- попап загрузки аватарки -->
+  <div class="popup popup__avatar overlay" id="mesto2">
+    <div class="popup__container">
+      <button class="popup__close close" type="button">
+        <img class="popup__close-icon" src="<%=require('./images/Close_Icon.svg')%>" alt="close" />
+      </button>
+      <form class="popup__form" name="avatar-form" id="avatarform" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <fieldset class="popup__fieldset">
+          <input class="popup__item" id="avatarlink" placeholder="https://somewebsite.com/someimage.jpg" type="url"
+            name="avatar" required
+            pattern="[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?"
+            data-error-message="Введите адрес ссылки на аватар" />
+          <span class="popup__span avatarlink-error">Введите ссылку на аватар</span>
+        </fieldset>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <template class="template__element" id="templ-element">
+    <div class="element">
+      <div class="element__rectangl">
+        <div class="element__mask">
+          <img class="element__image" src="#" alt="image" />
+          <button class="element__trash" type="button"></button>
+        </div>
+        <div class="element__group">
+          <h2 class="element__text"></h2>
+          <div class="element__likes">
+            <button class="element__like" type="button"></button>
+            <span class="element__like-count">6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
 </body>
+
 </html>

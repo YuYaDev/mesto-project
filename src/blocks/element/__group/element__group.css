@@ -1,0 +1,11 @@
+.element__group {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  color: black;
+  max-width: 246px;
+  height: 79px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
