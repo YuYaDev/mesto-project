@@ -1,94 +1,97 @@
-import {request} from "./utlis";
-
-
-const config = {
-    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-20',
-    headers: {
-        authorization: '8e826e83-ec2e-4d15-8279-d177b3176ef2',
-        'Content-Type': 'application/json'
+export default class Api {
+    constructor({baseUrl, headers}) {
+        this._requestBaseUrl = baseUrl;
+        this._requestHeaders = headers;
     }
-}
 
-export const getUserInfo = () => {
-    return request(config.baseUrl+'/users/me', {
-        headers: {
-            authorization: config.headers.authorization,
-        },
-    })
-}
+    _checkResponseData(res) {
+        if (res.ok)
+            return res.json()
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
 
-export const updateUserInfo = (newUserName, newUserDescription) => {
-    return request(config.baseUrl+'/users/me', {
-        method: 'PATCH',
-        headers: {
-            authorization: config.headers.authorization,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: newUserName,
-            about: newUserDescription
+    getUserInfo() {
+        return fetch(this._requestBaseUrl + '/users/me', { headers: this._requestHeaders })
+            .then(res => {
+                return this._checkResponseData(res);
+            })
+    }
+
+    getInitialCards() {
+        return fetch(this._requestBaseUrl + '/cards', { headers: this._requestHeaders })
+            .then(res => {
+                return this._checkResponseData(res)
+            })
+    }
+
+    addCard(cardData) {
+        return fetch(this._requestBaseUrl + '/cards', {
+                method: 'POST',
+                headers: this._requestHeaders,
+                body: JSON.stringify({
+                    name: cardData.name,
+                    link: cardData.link
+                })
+            })
+            .then(res => {
+                return this._checkResponseData(res)
+            })
+    }
+
+    deleteCard(cardId) {
+        return fetch(this._requestBaseUrl + `/cards/${cardId}`, { 
+          method: 'DELETE',
+          headers: this._requestHeaders })
+            .then(res => {
+                return this._checkResponseData(res)
+            })
+    }
+
+    addLikeCard(cardId) {
+        return fetch(this._requestBaseUrl + `/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._requestHeaders
+            })
+            .then(res => {
+                return this._checkResponseData(res)
+            })
+    }
+
+    deleteLikeCard(cardId) {
+        return fetch(this._requestBaseUrl + `/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._requestHeaders
         })
-    })
-}
-
-export const getInitialCards = () => {
-    return request(config.baseUrl+'/cards', {
-        headers: {
-            authorization: config.headers.authorization
-        }
-    })
-}
-
-export const addNewCard = (cardName, cardLink) => {
-    return request(config.baseUrl+'/cards', {
-        method: 'POST',
-        headers: {
-            authorization: config.headers.authorization,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: cardName,
-            link: cardLink
+        .then(res => {
+            return this._checkResponseData(res)
         })
-    });
-}
+    }
 
-export const deleteCard = (cardId) => {
-    return request(config.baseUrl+'/cards/'+cardId, {
-        method: 'DELETE',
-        headers: {
-            authorization: config.headers.authorization,
-        }
-    });
-}
+    editUserAvatar(userData) {
+        return fetch(this._requestBaseUrl + '/users/me/avatar', {
+                method: 'PATCH',
+                headers: this._requestHeaders,
+                body: JSON.stringify({
+                    avatar: userData.avatar
+                })
+            })
+            .then(res => {
+                return this._checkResponseData(res)
+            })
+    }
 
-export const addLikeCard = (cardId) => {
-    return request(config.baseUrl+'/cards/likes/'+cardId, {
-        method: 'PUT',
-        headers: {
-            authorization: config.headers.authorization,
-        }
-    });
-}
-
-export const deleteLikeCard = (cardId) => {
-    return request(config.baseUrl+'/cards/likes/'+cardId, {
-        method: 'DELETE',
-        headers: {
-            authorization: config.headers.authorization,
-        }
-    });
-}
-
-export const updateUserAvatar = (avatarUrl) => {
-    return request(config.baseUrl+'/users/me/avatar', {
-        method: 'PATCH',
-        headers: {
-            authorization: config.headers.authorization,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            avatar: avatarUrl
+    editUserProfile(userInfo) {
+        return fetch(this._requestBaseUrl +'/users/me', {
+            method: 'PATCH',
+            headers: this._requestHeaders,
+            body: JSON.stringify({
+                name: userInfo.name,
+                about: userInfo.about
+            })
         })
-    });
+        .then(res => {
+            return this._checkResponseData(res)
+        })
+    }
+
 }

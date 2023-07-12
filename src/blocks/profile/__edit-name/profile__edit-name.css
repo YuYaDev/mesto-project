@@ -1,0 +1,13 @@
+.profile__edit-name {
+  display: flex;
+  position: relative;
+  gap: 18px;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__edit-name {
+    align-self: center;
+    gap: 0;
+    position: initial;
+  }
+}
